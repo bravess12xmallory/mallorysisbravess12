@@ -563,7 +563,7 @@ msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
 }
 }
 });
-client.on("roleCreate", rc => {
+Rocket.on("roleCreate", rc => {
   const channel = rc.guild.channels.find("name", "log") //تقدر تغير اسم الشات
   if(channel) {
   var embed = new Discord.RichEmbed()
@@ -575,7 +575,7 @@ client.on("roleCreate", rc => {
   }
   });
   //By S Codes
-  client.on("roleDelete",  rd => {
+  Rocket.on("roleDelete",  rd => {
   const channel = rd.guild.channels.find("name", "log")
   if(channel) {
   var embed = new Discord.RichEmbed()
@@ -587,7 +587,7 @@ client.on("roleCreate", rc => {
   }
   });
 
-client.on("channelCreate",  cc => {
+Rocket.on("channelCreate",  cc => {
   const channel = cc.guild.channels.find("name", "log")
   if(channel) {
   var embed = new Discord.RichEmbed()
@@ -599,7 +599,7 @@ client.on("channelCreate",  cc => {
   }
   });
 
-   client.on("deleteChannel",  dc => {
+   Rocket.on("deleteChannel",  dc => {
   const channel = dc.guild.channels.find("name", "log")
   if(channel) {
   var embed = new Discord.RichEmbed()
@@ -613,7 +613,7 @@ client.on("channelCreate",  cc => {
   
   
   
-  client.on('messageUpdate', (message, newMessage) => {
+  Rocket.on('messageUpdate', (message, newMessage) => {
     if (message.content === newMessage.content) return;
     if (!message || !message.id || !message.content || !message.guild || message.author.bot) return;
     const channel = message.guild.channels.find('name', 'log');
@@ -630,7 +630,7 @@ client.on("channelCreate",  cc => {
 
 });
 
-client.on('guildMemberAdd', member => {
+Rocket.on('guildMemberAdd', member => {
     if (!member || !member.id || !member.guild) return;
     const guild = member.guild;
 	
@@ -649,7 +649,7 @@ client.on('guildMemberAdd', member => {
      channel.send({embed:embed});
 });
 
-client.on('guildMemberRemove', member => {
+Rocket.on('guildMemberRemove', member => {
     if (!member || !member.id || !member.guild) return;
     const guild = member.guild;
 	
@@ -667,7 +667,7 @@ client.on('guildMemberRemove', member => {
      channel.send({embed:embed});
 });
 
-client.on('messageDelete', message => {
+Rocket.on('messageDelete', message => {
     if (!message || !message.id || !message.content || !message.guild || message.author.bot) return;
     const channel = message.guild.channels.find('name', 'log');
     if (!channel) return;
@@ -681,8 +681,8 @@ client.on('messageDelete', message => {
      channel.send({embed:embed});
 
 });
-  client.on("guildBanAdd", (guild, member) => {
-  client.setTimeout(() => {
+  Rocket.on("guildBanAdd", (guild, member) => {
+  Rocket.setTimeout(() => {
     guild.fetchAuditLogs({
         limit: 1,
         type: 22
@@ -692,7 +692,7 @@ client.on('messageDelete', message => {
         try {
           let log = guild.channels.find('name', 'log');
           if (!log) return;
-          client.fetchUser(member.id).then(myUser => {
+          Rocket.fetchUser(member.id).then(myUser => {
           let embed = new Discord.RichEmbed()
         .setAuthor(exec)
         .setThumbnail(myUser.avatarURL)
