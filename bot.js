@@ -25,7 +25,7 @@ message.channel.send({embed:embed});
 }
 });
 Rocket.on('ready', () => { //playing
-    Rocket.user.setGame(`!!help | Servers : ${Rocket.guilds.size}	`,'https://www.twitch.tv/v5bz');
+    Rocket.user.setGame(`!!help | !!invite`,'https://www.twitch.tv/v5bz');
 });
 Rocket.on('message',function(message) {
     let toKick = message.mentions.users.first();
@@ -49,6 +49,7 @@ Rocket.on('message',function(message) {
        )
        }
 });
+
 Rocket.on('message', async message => {
   if(message.content.startsWith(prefix + "voicesetup")) {
   if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply(':x: **ليس لديك الصلاحيات الكافية**');
