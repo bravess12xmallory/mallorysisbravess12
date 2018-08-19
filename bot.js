@@ -52,7 +52,7 @@ Rocket.on('message',function(message) {
 Rocket.on('message', async message => {
   if(message.content.startsWith(prefix + "voicesetup")) {
   if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply(':x: **ليس لديك الصلاحيات الكافية**');
-  if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply(':x: **ليس معي الصلاحيات الكافية**');
+  if(!message.guild.member(Rocket.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply(':x: **ليس معي الصلاحيات الكافية**');
   var args = message.content.split(' ').slice(1).join(' ');
   if(args && !args.includes(0)) return message.channel.send(':negative_squared_cross_mark: » فشل اعداد الروم الصوتي .. __يجب عليك كتابة 0 في اسم الروم__');
   if(!args) args = `VoiceOnline: [ ${message.guild.members.filter(s => s.voiceChannel).size} ]`;
@@ -193,7 +193,7 @@ Rocket.on('message', message => {//help msg
         message.author.sendMessage(`**لتفعيل اللوق انشئ روم اسمه log**
 
         __**الاوامر الادارية :gear:**__
-
+-
   ❖${prefix}** bc ** ==>**لارسال رسالة لكل الاعضاء**
   ❖${prefix}** role <user> ** ==>**لاعطاء شخص رتبة**
   ❖${prefix}** role all ** ==>**لاعطاء الكل الرتبة المحددة**
@@ -206,6 +206,7 @@ Rocket.on('message', message => {//help msg
   ❖${prefix}** unmute ** ==>**لفك الاسكات عن عضو في السيرفر**
   ❖${prefix}** clear ** ==>**لمسح كل رسائل الشات**
         __**الاوامر العامة :coffee:**__
+-
   ❖${prefix}** avatar ** ==>**لكي يعطيك رابط صورتك او صورة صديقك**
   ❖${prefix}** s-avatar ** ==>**لكي يعطيك رابط صورة السيرفر**
   ❖${prefix}** server ** ==>**لمعلومات السيرفر**
@@ -218,16 +219,20 @@ Rocket.on('message', message => {//help msg
   ❖${prefix}** rooms ** ==>**لكي ترى كل قنوات السيرفر**
   ❖${prefix}** date ** ==>**لكي ترى التاريخ**
         __**الاوامر الترفيهية :video_game:**__
+-
   ❖${prefix}** cuttweet ** ==>**لكي يعطيك جمل كت تويت عشوائية**
   ❖${prefix}** roll ** ==>**لاختيار رقم عشوائي**
+ - 
+  ❖ **Support : https://discord.gg/g4cq9ZT**
 
-        **لتفعيل الحمآية , يرجى رفع رتبة البوت فوق كل الرتب**
-           **لو حاب تشوف اللوق؟ , سو روم كتآبي بأسم : log**
-====================================================================
+=================================
 
-  **Developers : wHybH & CuteS7T** | شكرا لكم لاستعمال البوت
+  ❖ Developers : 
 
-====================================================================
+1 - wHybh.
+2 - CuteS7T.
+
+=================================
 
   `);
 //  ** يشمل البوت اشياء كثيرة ومنها مانع التهكير - لـ تفعيل مانع التهكير ارفع رتبة البوت فوق كل رتب الادارة **
