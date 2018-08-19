@@ -186,7 +186,7 @@ Rocket.on('message', message => {
      if(message.content.startsWith(prefix + "clear")) {
          var args = message.content.split(" ").slice(1);
  if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('انت لا تمتلك الخاصية المطلوبه');
-  if (!args[0]) return message.channel.send('You didn\'t provide any number!!!');
+  if (!args[0]) return message.channel.send('يرجى تحديد رقم | `!!clear 10`');
 
   message.channel.bulkDelete(args[0]).then(() => {
     const embed = new Discord.RichEmbed()
