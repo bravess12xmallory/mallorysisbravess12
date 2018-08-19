@@ -1,31 +1,33 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
-const prefix = "*";
+const Rocket = new Discord.Client();
+const moment = require("moment");
+const canvas = require("canvas");
+const fs = require('fs')
+const prefix = '#'
 
 client.on('ready', () => {
-console.log('By wHybh.');
+client.user.setStatus('idle');
+  console.log('By wHybh.')
+});
 
-  });
-
-
-
-client.on('message', message => { //ping
+Rocket.on('message', message => { //ping
     if(!message.channel.guild) return;
-if (message.content.startsWith('#ping')) {
+if (message.content.startsWith('p!ping')) {
 if(!message.channel.guild) return;
 var msg = `${Date.now() - message.createdTimestamp}`
 var api = `${Math.round(Rocket.ping)}`
 if (message.author.bot) return;
 let embed = new Discord.RichEmbed()
 .setAuthor(message.author.username,message.author.avatarURL)
-.setColor('FFFFFF')
-.addField('Ping:',msg + " ms 📶 ")
+.setColor('RANDOM')
+.addField('**Time Taken:**',msg + " ms 📶 ")
+.addField('**WebSocket:**',api + " ms 📶 ")
 message.channel.send({embed:embed});
 }
 });
-client.on('ready', () => { //playing
-    client.user.setGame(`#help | Servers : ${Rocket.guilds.size}	`,'https://www.twitch.tv/faresgameryt');
-    client.user.setStatus('Online')
+Rocket.on('ready', () => { //playing
+    Rocket.user.setGame(`p!help | Servers : ${Rocket.guilds.size}	`,'https://www.twitch.tv/faresgameryt');
+    Rocket.user.setStatus('Online')
 });
 Rocket.on('message',function(message) {
     let toKick = message.mentions.users.first();
@@ -316,7 +318,9 @@ Rocket.on('message', message => {//help msg
 
 
         message.author.sendMessage(`**لتفعيل اللوق انشئ روم اسمه log**
+
         __**الاوامر الادارية :gear:**__
+
   ❖${prefix}** bc ** ==>**لارسال رسالة لكل الاعضاء**
   ❖${prefix}** role <user> ** ==>**لاعطاء شخص رتبة**
   ❖${prefix}** role all ** ==>**لاعطاء الكل الرتبة المحددة**
@@ -355,7 +359,10 @@ Rocket.on('message', message => {//help msg
   ❖${prefix}** quran 3 ** ==>**القرآن الكريم كامل بصوت الشيخ عبد الرحمن السديس وسعود الشريم **
   ❖${prefix}** quran 4 ** ==>**القرآن الكريم كامل بصوت الشيخ المعيقلي**
   ❖${prefix}** qstop ** ==>**لـ أيقاف تشغيل البوت**
+
   By : Platinum TeaM | __**شكرا لكم لاستعمال البوت**__
+
+
   `);
 //  ** يشمل البوت اشياء كثيرة ومنها مانع التهكير - لـ تفعيل مانع التهكير ارفع رتبة البوت فوق كل رتب الادارة **
 
@@ -1160,6 +1167,7 @@ Rocket.on('message', msg => {
 
 
         });
+
 
 client.login(process.env.BOT_TOKEN);  //لا تغير هنااااااااااااااااا
 //Test
