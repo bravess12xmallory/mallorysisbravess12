@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const Rocket = new Discord.Client();
 const moment = require("moment");
-const canvas = require("canvas");
 const fs = require('fs')
 const prefix = '#'
 
