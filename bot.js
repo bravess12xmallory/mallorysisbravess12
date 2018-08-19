@@ -209,7 +209,7 @@ Rocket.on('message', message => {
 };
 
 });
-client.on('message', message => {
+Rocket.on('message', message => {
         var prefix = '!'; // هنا تقدر تغير البرفكس
 	var command = message.content.split(" ")[0];
 	if(command == prefix + 'bc') { // الكوماند !bc
