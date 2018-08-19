@@ -4,8 +4,9 @@ const moment = require("moment");
 const fs = require('fs')
 const prefix = '#'
 
-client.on('ready', () => {
-client.user.setStatus('idle');
+Rocket.on('ready', () => {
+  
+Rocket.user.setStatus('idle');
   console.log('By wHybh.')
 });
 
