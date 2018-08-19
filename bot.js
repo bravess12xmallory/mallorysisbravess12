@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const Rocket = new Discord.Client();
 const moment = require("moment");
 const fs = require('fs')
-const prefix = '#'
+const prefix = '!!'
 
 Rocket.on('ready', () => {
   
@@ -12,7 +12,7 @@ Rocket.user.setStatus('idle');
 
 Rocket.on('message', message => { //ping
     if(!message.channel.guild) return;
-if (message.content.startsWith('#ping')) {
+if (message.content.startsWith('!!ping')) {
 if(!message.channel.guild) return;
 var msg = `${Date.now() - message.createdTimestamp}`
 var api = `${Math.round(Rocket.ping)}`
