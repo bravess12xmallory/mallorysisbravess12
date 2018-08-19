@@ -537,6 +537,6 @@ msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
 }
 });
 
-client.login(process.env.BOT_TOKEN);  //لا تغير هنااااااااااااااااا
+Rocket.login(process.env.BOT_TOKEN);  //لا تغير هنااااااااااااااااا
 //Test
 
