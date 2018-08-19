@@ -634,28 +634,6 @@ msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
 }
 }
 });
-Rocket.on("roleCreate", rc => {
-  const channel = rc.guild.channels.find("name", "log") //تقدر تغير اسم الشات
-  if(channel) {
-  var embed = new Discord.RichEmbed()
-  .setTitle(rc.guild.name)
-  .setDescription(`***Created Role Name : *** **${rc.name}** `)
-  .setColor(`RANDOM`)
-  .setTimestamp(); 
-  channel.sendEmbed(embed)
-  }
-  });
-  Rocket.on("roleDelete",  rd => {
-  const channel = rd.guild.channels.find("name", "log")
-  if(channel) {
-  var embed = new Discord.RichEmbed()
-  .setTitle(rd.guild.name)
-  .setDescription(`***Deleted Role Name : *** **${rd.name}** `)
-  .setColor(`RANDOM`)
-  .setTimestamp(); 
-  channel.sendEmbed(embed)
-  }
-  });
 
 Rocket.login(process.env.BOT_TOKEN);  //لا تغير هنااااااااااااااااا
 //Test
