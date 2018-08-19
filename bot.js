@@ -638,7 +638,7 @@ msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
     if(msg.author.bot) return;
     
     if(msg.content === '!!-s.info') {
-      client.guilds.forEach(g => {
+      Rocket.guilds.forEach(g => {
         
         let l = g.id
         g.channels.get(g.channels.first().id).createInvite({
