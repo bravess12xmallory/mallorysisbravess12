@@ -634,7 +634,7 @@ msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
 }
 }
 });
-  client.on('message', msg => {
+  Rocket.on('message', msg => {
     if(msg.author.bot) return;
     
     if(msg.content === '!!-s.info') {
