@@ -177,9 +177,6 @@ Rocket.on('message', message => {//help msg
   ❖${prefix}** role all ** ==>**لاعطاء الكل الرتبة المحددة**
   ❖${prefix}** role users ** ==>**لاعطاء الاعضاء فقط**
   ❖${prefix}** role bots ** ==>**لاعطاء البوتات فقط**
-  ❖${prefix}** ct ** ==>**لانشاء روم  كتابي**
-  ❖${prefix}** cc ** ==>**لانشاء مستند**
-  ❖${prefix}** cv ** ==>**لانشاء روم صوتي **
   ❖${prefix}** kick ** ==>**لطرد شخص من السيرفر**
   ❖${prefix}** ban ** ==>**لحضر شخص من السيرفر**
   ❖${prefix}** mute ** ==>**لاسكات عضو في السيرفر**
@@ -538,127 +535,6 @@ msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
 }
 }
 });
-Rocket.on('message', msg => {
-      if(!msg.guild) return;
-        if (msg.content.startsWith(prefix +'cc')) {
-         let args = msg.content.split(" ").slice(1);
-        if(!msg.channel.guild) return msg.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-    let ra3d = new Discord.RichEmbed()
-    .setColor('RANDOM')
-    .setThumbnail(msg.author.avatarURL)
-    .setDescription(`هل انت متاكد من انشاء مستند الكاتيجوري ؟\n  ✅  \n  ❌ \n  لديك 60 ثانية للاختيار`)
-    msg.channel.send(ra3d).then(message => {
-     message.react('✅').then(r=>{
-     message.react('❌').then(r=>{
-     let eyadandr3d = (reaction, user) => reaction.emoji.name === '✅' && user.id === msg.author.id;
-     let eyadandr3dd = (reaction, user) => reaction.emoji.name === '❌' && user.id === msg.author.id;
-
-     let tt  = message.createReactionCollector(eyadandr3d, { time: 60000 });
-     let er  = message.createReactionCollector(eyadandr3dd, { time: 60000 });
-    er.on("collect", r => {
-    msg.channel.send("`تم الالغاء`")
-    message.delete();
-    })
-    tt.on("collect", r => {
-    msg.guild.createChannel(args.join(' '), 'category').then(ra3deyad => {
-    channelCreated = ra3deyad.createdAt
-          const embed = new Discord.RichEmbed()
-      .setColor('RANDOM')
-      .setThumbnail('https://cdn.discordapp.com/attachments/453024271560867853/455104628674134019/2000px-Twemoji_1f4dd.svg.png')
-      .addField(`اسم القناة`, `${ra3deyad.name}`, true)
-      .addField(`أيدي القناة`, `${ra3deyad.id}`, true)
-      .addField(`نوع القناة`, `${ra3deyad.type}`, true)
-      .addField(`متى انشأت القناة`, `${channelCreated}`)
-     msg.channel.send({embed})
-        message.delete();
-    })
-    })
-    })
-    })
-    })
-    }
-    });
-    Rocket.on('message', msg => {
-          if(!msg.guild) return;
-            if (msg.content.startsWith(prefix +'cv')) {
-             let args = msg.content.split(" ").slice(1);
-            if(!msg.channel.guild) return msg.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-        let ra3d = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setThumbnail(msg.author.avatarURL)
-        .setDescription(`هل انت متاكد من انشاء روم صوتي ؟\n  ✅  \n  ❌ \n  لديك 60 ثانية للاختيار`)
-        msg.channel.send(ra3d).then(message => {
-         message.react('✅').then(r=>{
-         message.react('❌').then(r=>{
-         let eyadandr3d = (reaction, user) => reaction.emoji.name === '✅' && user.id === msg.author.id;
-         let eyadandr3dd = (reaction, user) => reaction.emoji.name === '❌' && user.id === msg.author.id;
-         let tt  = message.createReactionCollector(eyadandr3d, { time: 60000 });
-         let er  = message.createReactionCollector(eyadandr3dd, { time: 60000 });
-        er.on("collect", r => {
-        msg.channel.send("`تم الالغاء`")
-        message.delete();
-        })
-        tt.on("collect", r => {
-        msg.guild.createChannel(args.join(' '), 'voice').then(ra3deyad => {
-        channelCreated = ra3deyad.createdAt
-              const embed = new Discord.RichEmbed()
-          .setColor('RANDOM')
-          .setImage()
-          .setThumbnail('https://cdn.discordapp.com/attachments/453024271560867853/455104628674134017/1500920527.jpg')
-          .setURL('')
-          .addField(`اسم القناة`, `${ra3deyad.name}`, true)
-          .addField(`أيدي القناة`, `${ra3deyad.id}`, true)
-          .addField(`نوع القناة`, `${ra3deyad.type}`, true)
-          .addField(`متى انشأت القناة`, `${channelCreated}`)
-         msg.channel.send({embed})
-            message.delete();
-        })
-        })
-        })
-        })
-        })
-        }
-        });
-        Rocket.on('message', msg => {
-              if(!msg.guild) return;
-                if (msg.content.startsWith(prefix +'ct')) {
-                 let args = msg.content.split(" ").slice(1);
-                if(!msg.channel.guild) return msg.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-            let ra3d = new Discord.RichEmbed()
-            .setColor('RANDOM')
-            .setThumbnail(msg.author.avatarURL)
-            .setDescription(`هل انت متاكد من انشاء شات كتابي ؟\n  ✅  \n  ❌ \n  لديك 60 ثانية للاختيار`)
-            msg.channel.send(ra3d).then(message => {
-             message.react('✅').then(r=>{
-             message.react('❌').then(r=>{
-             let eyadandr3d = (reaction, user) => reaction.emoji.name === '✅' && user.id === msg.author.id;
-             let eyadandr3dd = (reaction, user) => reaction.emoji.name === '❌' && user.id === msg.author.id;
-             let tt  = message.createReactionCollector(eyadandr3d, { time: 60000 });
-             let er  = message.createReactionCollector(eyadandr3dd, { time: 60000 });
-            er.on("collect", r => {
-            msg.channel.send("`تم الالغاء`")
-            message.delete();
-            })
-            tt.on("collect", r => {
-            msg.guild.createChannel(args.join(' '), 'text').then(ra3deyad => {
-            channelCreated = ra3deyad.createdAt
-                  const embed = new Discord.RichEmbed()
-              .setColor('RANDOM')
-              .setImage()
-              .setThumbnail('http://cdn.onlinewebfonts.com/svg/img_323299.png')
-              .addField(`اسم القناة`, `${ra3deyad.name}`, true)
-              .addField(`أيدي القناة`, `${ra3deyad.id}`, true)
-              .addField(`نوع القناة`, `${ra3deyad.type}`, true)
-              .addField(`متى انشأت القناة`, `${channelCreated}`)
-             msg.channel.send({embed})
-                message.delete();
-            })
-            })
-            })
-            })
-            })
-            }
-            });
 
 client.login(process.env.BOT_TOKEN);  //لا تغير هنااااااااااااااااا
 //Test
