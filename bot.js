@@ -4,8 +4,6 @@ const moment = require("moment");
 const fs = require('fs')
 const prefix = '='
 
-let ar = JSON.parse(fs.readFileSync(`./AutoRole.json`, `utf8`))
-
 Rocket.on('ready', () => {
   
 Rocket.user.setStatus('idle');
