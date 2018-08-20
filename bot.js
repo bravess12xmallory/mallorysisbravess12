@@ -629,9 +629,6 @@ msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
     }
     
   });
-let ar = JSON.parse(fs.readFileSync(`./AutoRole.json`, `utf8`))
-
-
  Rocket.on('guildMemberAdd', member => {
   if(!ar[member.guild.id]) ar[member.guild.id] = {
   onoff: 'Off',
