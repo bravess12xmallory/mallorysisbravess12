@@ -222,15 +222,16 @@ Rocket.on("message", message => {
  message.delete(); 
 };     
 });
-Rocket.on('message', message => {//help msg
-    if (message.author.bot) return;
-     if (message.content === prefix + "help") {
-        message.react("☑")
+Rocket.on('message', msg => {
+    if(msg.content === '=help') {
+        
+        if(!msg.channel.guild) return msg.reply("هذا الأمر للسيرفرات فقط")
 
-
-
-
-        message.author.sendMessage(`
+if (msg.author.bot) return;
+  const embed = new Discord.RichEmbed()
+            .setColor("WHITE")
+                                .setTitle("**Brave.**")
+            .setDescription(`
         __**الاوامر الادارية :gear:**__
 -
   ❖${prefix}** bc ** ==>**لارسال رسالة لكل الاعضاء**
@@ -262,24 +263,14 @@ Rocket.on('message', message => {//help msg
 -
   ❖${prefix}** cuttweet ** ==>**اسألة عشوائيه**
   ❖${prefix}** roll ** ==>**لاختيار رقم عشوائي**
+`)
+        .setFooter('Developers | Hybh & CuteS7T')
+        
+        msg.author.sendEmbed(embed)
 
-=================================
+    }
 
-  ❖ Developers : 
-
-1 - wHybh.
-2 - CuteS7T.
-
-=================================
-
-  `);
-//  ** يشمل البوت اشياء كثيرة ومنها مانع التهكير - لـ تفعيل مانع التهكير ارفع رتبة البوت فوق كل رتب الادارة **
-
-
-  }
-  });
-
-
+});
 Rocket.on('message', message => {//help
      if (message.content === "=help") {
   message.channel.send('**تم ارسال الاوامر بالخاص** :small_orange_diamond: ')
@@ -632,47 +623,6 @@ msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
     
   });
 
- Rocket.on('guildMemberAdd', member => {
-  if(!ar[member.guild.id]) ar[member.guild.id] = {
-  onoff: 'Off',
-  role: 'Member'
-  }
-  if(ar[member.guild.id].onoff === 'Off') return;
-member.addRole(member.guild.roles.find(`name`, ar[member.guild.id].role)).catch(console.error)
-})
-
-Rocket.on('message', message => { 
-  var sender = message.author
-
-if(!message.guild) return
-  if(!ar[message.guild.id]) ar[message.guild.id] = {
-  onoff: 'Off',
-  role: 'Member'
-  }
-
-if(message.content.startsWith(prefix + `autorole`)) {
-         
-  let perms = message.member.hasPermission(`MANAGE_ROLES`)
-
-  if(!perms) return message.reply(`You don't have permissions, required permission : Manage Roles.`)
-  let args = message.content.split(" ").slice(1)
-  if(!args.join(" ")) return message.reply(`${prefix}autorle toggle/ set [ROLE NAME]`)
-  let state = args[0]
-  if(!state.trim().toLowerCase() == 'toggle' || !state.trim().toLowerCase() == 'setrole') return message.reply(`Please type a right state, ${prefix}modlogs toggle/setrole [ROLE NAME]`) 
-    if(state.trim().toLowerCase() == 'toggle') { 
-     if(ar[message.guild.id].onoff === 'Off') return [message.channel.send(`**AutoRole is On** :small_orange_diamond:`), ar[message.guild.id].onoff = 'On']
-     if(ar[message.guild.id].onoff === 'On') return [message.channel.send(`**AutoRole is Off** :small_orange_diamond:`), ar[message.guild.id].onoff = 'Off']
-    }
-   if(state.trim().toLowerCase() == 'set') {
-   let newRole = message.content.split(" ").slice(2).join(" ")
-   if(!newRole) return message.reply(`${prefix}autorole setrole [ROLE NAME]`)
-     if(!message.guild.roles.find(`name`,newRole)) return message.reply(`I Cant Find This Role.`)
-    ar[message.guild.id].role = newRole
-     message.channel.send(`**AutoRole has Change to :** ${newRole}.`)
-   } 
-         }
-
-});
 Rocket.login(process.env.BOT_TOKEN);  //لا تغير هنااااااااااااااااا
 //Test
 
