@@ -259,13 +259,14 @@ if (msg.author.bot) return;
   ❖ ${prefix}roles ➺ اظهار رتب السيرفر
   ❖ ${prefix}rooms ➺ اظهار رومات السيرفر
   ❖ ${prefix}support ➺ اظهار سيرفر الدعم الفني
+-
         __**الاوامر اخرى :video_game:**__
 -
   ❖ ${prefix}cuttweet ➺ اسأله عشوائيه
   ❖ ${prefix}roll ➺ لاختيار رقم عشوائي
 -
 `)
-        .setFooter('**Developers | Hybh & CuteS7T**')
+        .setFooter('Developers | Hybh & CuteS7T')
         
         msg.author.sendEmbed(embed)
 
