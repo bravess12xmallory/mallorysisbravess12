@@ -25,7 +25,7 @@ message.channel.send({embed:embed});
 }
 });
 Rocket.on('ready', () => { //playing
-    Rocket.user.setGame(`=help | كل عآم وانتم بخير`,'https://www.twitch.tv/v5bz');
+    Rocket.user.setGame(`🔸 | =help`,'https://www.twitch.tv/v5bz');
 });
 Rocket.on('message',function(message) {
     let toKick = message.mentions.users.first();
@@ -266,7 +266,7 @@ if (msg.author.bot) return;
   ❖ ${prefix}roll ➺ لاختيار رقم عشوائي
 -
 `)
-        .setFooter('Developers | Hybh & CuteS7T')
+        .setFooter('Developers | Hybh & CuteS7T 🌸')
         
         msg.author.sendEmbed(embed)
 
