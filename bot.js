@@ -51,7 +51,7 @@ Rocket.on('message',function(message) {
 });
 
 Rocket.on('message', async message => {
-  if(message.content.startsWith(prefix + "voice set")) {
+  if(message.content.startsWith(prefix + "voice.set")) {
   if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('**ليس لديك الصلاحيات الكافية**');
   if(!message.guild.member(Rocket.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('**ليس معي الصلاحيات الكافية**');
   var args = message.content.split(' ').slice(1).join(' ');
@@ -234,37 +234,38 @@ if (msg.author.bot) return;
             .setDescription(`
         __**الاوامر الادارية :gear:**__
 -
-  ❖${prefix}** bc ** ==>**لارسال رسالة لكل الاعضاء**
-  ❖${prefix}** autorole ** ==>**خاصية رتبة تلقائية**
-  ❖${prefix}** role <user> ** ==>**لاعطاء شخص رتبة**
-  ❖${prefix}** role all ** ==>**لاعطاء الكل الرتبة المحددة**
-  ❖${prefix}** role users ** ==>**لاعطاء الاعضاء فقط**
-  ❖${prefix}** role bots ** ==>**لاعطاء البوتات فقط**
-  ❖${prefix}** voicesetup ** ==>**لصنع روم عدد الاعضاء**
-  ❖${prefix}** kick ** ==>**لطرد شخص من السيرفر**
-  ❖${prefix}** ban ** ==>**لحضر شخص من السيرفر**
-  ❖${prefix}** mute ** ==>**لاسكات عضو في السيرفر**
-  ❖${prefix}** unmute ** ==>**لفك الاسكات عن عضو في السيرفر**
-  ❖${prefix}** clear ** ==>**لمسح كل رسائل الشات**
+  ❖${prefix}bc ➺ لارسال رسالة لكل الاعضاء
+  ❖${prefix}role <user> ➺ لاعطاء شخص رتبة
+  ❖${prefix}role all ➺ لاعطاء الكل الرتبة المحددة
+  ❖${prefix}role users ➺ لاعطاء الاعضاء فقط
+  ❖${prefix}role bots ➺ لاعطاء البوتات فقط
+  ❖${prefix}voice.set ➺ لصنع روم عدد الاعضاء
+  ❖${prefix}kick ➺ لطرد شخص من السيرفر
+  ❖${prefix}ban ➺ لحضر شخص من السيرفر
+  ❖${prefix}mute ➺ لاسكات عضو في السيرفر
+  ❖${prefix}unmute ➺ لفك الاسكات عن عضو في السيرفر
+  ❖${prefix}clear ➺ لمسح كل رسائل الشات
+-
         __**الاوامر العامة :coffee:**__
 -
-  ❖${prefix}** avatar ** ==>**اظهار صورتك او صورة شخص اخر**
-  ❖${prefix}** icon ** ==>**اظهار صورة السيرفر**
-  ❖${prefix}** server ** ==>**لمعلومات السيرفر**
-  ❖${prefix}** ping ** ==>**للتحقق من سرعة الاتصال**
-  ❖${prefix}** bot ** ==>**معلومات عن البوت**
-  ❖${prefix}** invite ** ==>**لاحضار البوت الى سيرفرك**
-  ❖${prefix}** time ** ==>**لرؤية الوقت**
-  ❖${prefix}** color ** ==>**لتغيير لونك**
-  ❖${prefix}** roles ** ==>**اظهار رتب السيرفر**
-  ❖${prefix}** rooms ** ==>**اظهار رومات السيرفر**
-  ❖${prefix}** support ** ==>**اظهار سيرفر الدعم الفني**
+  ❖ ${prefix}avatar ➺ اظهار صورتك او صورة شخص اخر
+  ❖ ${prefix}icon ➺ اظهار صورة السيرفر
+  ❖ ${prefix}server ➺ لمعلومات السيرفر
+  ❖ ${prefix}ping ➺ للتحقق من سرعة الاتصال
+  ❖ ${prefix}bot ➺ معلومات عن البوت
+  ❖ ${prefix}invite ➺ لاحضار البوت الى سيرفرك
+  ❖ ${prefix}time ➺ لرؤية الوقت
+  ❖ ${prefix}color ➺ لتغيير لونك
+  ❖ ${prefix}roles ➺ اظهار رتب السيرفر
+  ❖ ${prefix}rooms ➺ اظهار رومات السيرفر
+  ❖ ${prefix}support ➺ اظهار سيرفر الدعم الفني
         __**الاوامر اخرى :video_game:**__
 -
-  ❖${prefix}** cuttweet ** ==>**اسألة عشوائيه**
-  ❖${prefix}** roll ** ==>**لاختيار رقم عشوائي**
+  ❖ ${prefix}cuttweet ➺ اسأله عشوائيه
+  ❖ ${prefix}roll ➺ لاختيار رقم عشوائي
+-
 `)
-        .setFooter('Developers | Hybh & CuteS7T')
+        .setFooter('**Developers | Hybh & CuteS7T**')
         
         msg.author.sendEmbed(embed)
 
