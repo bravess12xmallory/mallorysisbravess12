@@ -134,7 +134,7 @@ client.on('message', msg => {
     if(msg.member.hasPermission("MANAGE_MESSAGES")) {
     if (textxt == "") {
         msg.delete().then
-    msg.channel.send("***```Supply A Number 👌```***").then(m => m.delete(3000));
+    msg.channel.send("***```يرجى اختيار رقم للمسح```***").then(m => m.delete(3000));
 } else {
     msg.delete().then
     msg.delete().then
@@ -383,7 +383,7 @@ client.on('message', async msg => {
 			        .setDescription(`**الرجآء من حضرتك إختيآر رقم المقطع** :
 ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 
-					.setFooter("Speed Bot")
+					.setFooter("Alpha Bot")
 					msg.channel.sendEmbed(embed1).then(message =>{message.delete(20000)})
 					
 					try {
