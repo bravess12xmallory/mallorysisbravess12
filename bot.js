@@ -39,7 +39,7 @@ Rocket.on('message',function(message) {
        if(!message.guild.member(toKick).kickable) return message.reply("**# - لا استطيع طرد هذا الشخص!**")
        let toEmbed;
        toEmbed = new Discord.RichEmbed()
-       .setTitle("تم طردك من السيرفر")
+       .setTitle("You got Kick!")
        .setThumbnail(toKick.avatarURL)
        .addField("**# - السيرفر:**",message.guild.name,true)
        .addField("**# - السبب:**",toReason,true)
@@ -86,7 +86,7 @@ Rocket.on("message", function(message) {
        if(!message.guild.member(toBan).bannable) return message.reply("**# - لا استطيع طرد هذا الشخص**")
        let toEmbed;
        toEmbed = new Discord.RichEmbed()
-       .setTitle("تم طردك من السيرفر")
+       .setTitle("You got banned!")
        .setThumbnail(toBan.avatarURL)
        .addField("**# - السيرفر:**",message.guild.name,true)
        .addField("**# - السبب:**",toReason,true)
