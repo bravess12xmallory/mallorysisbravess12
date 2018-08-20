@@ -668,26 +668,6 @@ if(message.content.startsWith(prefix + `autorole`)) {
      message.channel.send(`**AutoRole has Change to :** ${newRole}.`)
    } 
          }
-if(message.content === prefix + 'info') {
-    let perms = message.member.hasPermission(`MANAGE_GUILD`) 
-    if(!perms) return message.reply(`You don't have permissions.`)
-    var embed = new Discord.RichEmbed()
-
-.addField(`Autorole : :sparkles:  `, `
-
-State : __${ar[message.guild.id].onoff}__
-Role : __${ar[message.guild.id].role}__`)
-
-
-    .setColor(`WHITE`)
-    message.channel.send({embed})
-  }
-
-
-    fs.writeFile("./AutoRole.json", JSON.stringify(ar), (err) => {
-    if (err) console.error(err)
-  });
-
 
 });
 Rocket.login(process.env.BOT_TOKEN);  //لا تغير هنااااااااااااااااا
