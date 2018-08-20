@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const Rocket = new Discord.Client();
 const moment = require("moment");
 const fs = require('fs')
-const prefix = '='
+const prefix = '!!'
 
 Rocket.on('ready', () => {
   
@@ -12,7 +12,7 @@ Rocket.user.setStatus('idle');
 
 Rocket.on('message', message => { //ping
     if(!message.channel.guild) return;
-if (message.content.startsWith('=ping')) {
+if (message.content.startsWith('!!ping')) {
 if(!message.channel.guild) return;
 var msg = `${Date.now() - message.createdTimestamp}`
 var api = `${Math.round(Rocket.ping)}`
@@ -25,7 +25,7 @@ message.channel.send({embed:embed});
 }
 });
 Rocket.on('ready', () => { //playing
-    Rocket.user.setGame(`🔸 | =help`,'https://www.twitch.tv/v5bz');
+    Rocket.user.setGame(`| !!help`,'https://www.twitch.tv/v5bz');
 });
 Rocket.on('message',function(message) {
     let toKick = message.mentions.users.first();
@@ -99,13 +99,13 @@ Rocket.on("message", function(message) {
 });
 
                         Rocket.on('message', message => { //bot
-                            if (message.content.startsWith("=bot")) {
+                            if (message.content.startsWith("!!bot")) {
                             message.channel.send({
                                 embed: new Discord.RichEmbed()
                                     .setAuthor(Rocket.user.username,Rocket.user.avatarURL)
                                     .setThumbnail(Rocket.user.avatarURL)
                                     .setColor('FFFFFF')
-                                    .setTitle('**Brave Status:** ')
+                                    .setTitle('**Alpha Status:** ')
                                     .addField('Uptime :', [timeCon(process.uptime())], true)
                                     .addField('Ping :' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
                                     .addField('servers``', [Rocket.guilds.size], true)
@@ -146,7 +146,7 @@ if(msg.content.startsWith (prefix  + 'server')) {
 
 
 Rocket.on('message', message => {//av mension
-    if (message.content.startsWith("=avatar")) {
+    if (message.content.startsWith("!!avatar")) {
 
         var mentionned = message.mentions.users.first();
     var king66s;
@@ -165,20 +165,11 @@ Rocket.on('message', message => {//av mension
     }
   });
 Rocket.on('message', message => {//roles
-    if (message.content === "=roles") {
+    if (message.content === "!!roles") {
         var roles = message.guild.roles.map(roles => `${roles.name}, `).join(' ')
         const embed = new Discord.RichEmbed()
         .setColor('FFFFFF')
         .addField('**Roles** :',`[ ${roles} ]`)
-        message.channel.sendEmbed(embed);
-    }
-});
-Rocket.on('message', message => {//rooms
-    if (message.content === "=rooms") {
-        var channels = message.guild.channels.map(channels => `${channels.name}, `).join(' ')
-        const embed = new Discord.RichEmbed()
-        .setColor('FFFFFF')
-        .addField('**Rooms** :',`[ ${channels} ]`)
         message.channel.sendEmbed(embed);
     }
 });
@@ -198,11 +189,10 @@ Rocket.on('message', message => {
 
     if (!actionlog) return message.channel.send('Can\'t find action-log channel. Are you sure that this channel exists and I have permission to view it? **CANNOT POST LOG.**');
     const embedlog = new Discord.RichEmbed()
-      .setDescription('Brave')
+      .setDescription('Alpha.')
       .setColor(0xF16104)
       .addField('Clear By', `<@${message.author.id}> with ID ${message.author.id}`)
       .addField('Clear in', message.channel)
-      .addField('Time', message.createdAt);
     actionlog.send(embedlog);
    
   });
@@ -216,57 +206,56 @@ Rocket.on("message", message => {
   let args = message.content.split(" ").slice(1);
   var argresult = args.join(' '); 
   message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
- m.send(`${argresult}\n ${m}`);
+ m.send(`${argresult}\n\n ${m}`);
 })
  message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'all').size}\` : عدد الاعضاء المستلمين`); 
  message.delete(); 
 };     
 });
 Rocket.on('message', msg => {
-    if(msg.content === '=help') {
+    if(msg.content === '!!help') {
         
         if(!msg.channel.guild) return msg.reply("هذا الأمر للسيرفرات فقط")
 
 if (msg.author.bot) return;
   const embed = new Discord.RichEmbed()
             .setColor("WHITE")
-                                .setTitle("**Brave.**")
+                                .setTitle("**Help list for Alpha Bot.**")
             .setDescription(`
-        __**الاوامر الادارية :gear:**__
--
-  ❖${prefix}bc ➺ لارسال رسالة لكل الاعضاء
-  ❖${prefix}role <user> ➺ لاعطاء شخص رتبة
-  ❖${prefix}role all ➺ لاعطاء الكل الرتبة المحددة
-  ❖${prefix}role users ➺ لاعطاء الاعضاء فقط
-  ❖${prefix}role bots ➺ لاعطاء البوتات فقط
-  ❖${prefix}voice.set ➺ لصنع روم عدد الاعضاء
-  ❖${prefix}kick ➺ لطرد شخص من السيرفر
-  ❖${prefix}ban ➺ لحضر شخص من السيرفر
-  ❖${prefix}mute ➺ لاسكات عضو في السيرفر
-  ❖${prefix}unmute ➺ لفك الاسكات عن عضو في السيرفر
-  ❖${prefix}clear ➺ لمسح كل رسائل الشات
--
-        __**الاوامر العامة :coffee:**__
--
-  ❖ ${prefix}avatar ➺ اظهار صورتك او صورة شخص اخر
-  ❖ ${prefix}icon ➺ اظهار صورة السيرفر
-  ❖ ${prefix}server ➺ لمعلومات السيرفر
-  ❖ ${prefix}ping ➺ للتحقق من سرعة الاتصال
-  ❖ ${prefix}bot ➺ معلومات عن البوت
-  ❖ ${prefix}invite ➺ لاحضار البوت الى سيرفرك
-  ❖ ${prefix}time ➺ لرؤية الوقت
-  ❖ ${prefix}color ➺ لتغيير لونك
-  ❖ ${prefix}roles ➺ اظهار رتب السيرفر
-  ❖ ${prefix}rooms ➺ اظهار رومات السيرفر
-  ❖ ${prefix}support ➺ اظهار سيرفر الدعم الفني
--
-        __**الاوامر اخرى :video_game:**__
--
-  ❖ ${prefix}cuttweet ➺ اسأله عشوائيه
-  ❖ ${prefix}roll ➺ لاختيار رقم عشوائي
+__اوامر ادارية__
+
+  **${prefix}bc** : لارسال رسالة لكل الاعضاء
+  **${prefix}role** <user> : لاعطاء شخص رتبة
+  **${prefix}role all** : لاعطاء الكل الرتبة المحددة
+  **${prefix}role users** : لاعطاء الاعضاء فقط
+  **${prefix}role bots** : لاعطاء البوتات فقط
+  **${prefix}voice.set** : لصنع روم عدد الاعضاء
+  **${prefix}kick** : لطرد شخص من السيرفر
+  **${prefix}ban** : لحضر شخص من السيرفر
+  **${prefix}mute** : لاسكات عضو في السيرفر
+  **${prefix}unmute** : لفك الاسكات عن عضو في السيرفر
+  **${prefix}clear** : لمسح كل رسائل الشات
+
+__اوامر عامة__
+
+  **${prefix}avatar** : اظهار صورتك
+  **${prefix}icon** : اظهار صورة السيرفر
+  **${prefix}server** : لمعلومات السيرفر
+  **${prefix}ping** : للتحقق من سرعة الاتصال
+  **${prefix}bot** : معلومات حول البوت
+  **${prefix}invite** : لاحضار البوت الى سيرفرك
+  **${prefix}time** : لرؤية الوقت
+  **${prefix}color** : لتغيير لونك
+  **${prefix}roles** : اظهار رومات السيرفر
+  **${prefix}support** : اظهار سيرفر الدعم الفني
+
+__اوامر اخرى__
+
+  **${prefix}cuttweet** : اسأله عشوائيه
+  **${prefix}roll** : لاختيار رقم عشوائي
 -
 `)
-        .setFooter('Developers | Hybh & CuteS7T 🌸')
+        .setFooter('Alpha beta version')
         
         msg.author.sendEmbed(embed)
 
@@ -274,21 +263,21 @@ if (msg.author.bot) return;
 
 });
 Rocket.on('message', message => {//help
-     if (message.content === "=help") {
-  message.channel.send('**تم ارسال الاوامر بالخاص** :small_orange_diamond: ')
+     if (message.content === "!!help") {
+  message.channel.send('**تم ارسال بالخاص** :small_orange_diamond: ')
     }
 });
 Rocket.on('message', message => {
   if(message.content === '=invite') {
   const embed = new Discord.RichEmbed()
-  .setTitle('Invite Brave BOT!')
+  .setTitle('Invite Alpha Bot')
   .setURL('https://discordapp.com/api/oauth2/authorize?client_id=480653185208418304&permissions=8&scope=bot')
   .setColor('FFFFFF')
   message.author.send(embed);
   }
 });
 Rocket.on('message', message => {
-  if(message.content === '=support') {
+  if(message.content === '!!support') {
   const embed = new Discord.RichEmbed()
   .setTitle('Support Server.')
   .setURL('https://discord.gg/g4cq9ZT')
@@ -297,7 +286,7 @@ Rocket.on('message', message => {
   }
 });
 Rocket.on('message', message => {//unmute
-    if (message.content.startsWith('=unmute')) {
+    if (message.content.startsWith('!!unmute')) {
   if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send("**انت لا تمتلك الخاصيه المطلوبه** :small_orange_diamond:");
    let men = message.mentions.users.first()
    let mas = message.author
@@ -325,7 +314,7 @@ Rocket.on('message', message => {//unmute
       }
 });
 Rocket.on('message', message => {//mute
-    if (message.content.startsWith('=mute')) {
+    if (message.content.startsWith('!!mute')) {
   if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send("**انت لا تمتلك الخاصيه المطلوبه** :small_orange_diamond:");
   let men = message.mentions.users.first()
   let mas = message.author
@@ -424,7 +413,7 @@ var currentTime = new Date(),
 ]
 
  Rocket.on('message', message => {//cuttweet
-   if (message.content.startsWith("=cuttweet")) {
+   if (message.content.startsWith("!!cuttweet")) {
                 if(!message.channel.guild) return message.reply('** This command only for servers**');
   var embed = new Discord.RichEmbed()
   .setColor('FFFFFF')
@@ -437,7 +426,7 @@ var currentTime = new Date(),
 });
 Rocket.on('message', message => {//color
     let args = message.content.split(' ').slice(1);
-if(message.content.split(' ')[0] == '=color'){
+if(message.content.split(' ')[0] == '!!color'){
      const embedd = new Discord.RichEmbed()
 .setFooter('Requested by '+message.author.username, message.author.avatarURL)
 .setDescription(`**لايوجد لون بهذا الرقم **:small_orange_diamond:`)
@@ -454,7 +443,7 @@ if    (!(message.guild.roles.find("name",`${args}`))) return  message.channel.se
 const embed = new Discord.RichEmbed()
 
 .setFooter('Requested by '+message.author.username, message.author.avatarURL)
-.setDescription(`**تم تغيير اللون بنجاح** :white_check_mark:`)
+.setDescription(`**تم تغيير اللون بنجاح** :small_orange_diamond:`)
 
 .setColor(`${a.hexColor}`)
 message.channel.sendEmbed(embed);
@@ -527,10 +516,9 @@ Rocket.on('message', function(message) {//roll
     Rocket.on("message", message => {    //serv-av
         if(!message.channel.guild) return;
  if(message.author.bot) return;
-    if(message.content === "=icon"){
+    if(message.content === "!!icon"){
         const embed = new Discord.RichEmbed()
 
-    .setTitle(`صورة سيرفر : ** ${message.guild.name} **`)
 .setAuthor(message.author.username, message.guild.iconrURL)
   .setColor('FFFFFF')
   .setImage(message.guild.iconURL)
