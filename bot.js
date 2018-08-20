@@ -1846,7 +1846,8 @@ var prefix = "-";
          message.channel.send({embed});
 
     }
-      });  
+      });
+
 	  client.on('message', message => {
         let args = message.content.split(" ").slice(1).join(" ")
         let men = message.mentions.users.first()
