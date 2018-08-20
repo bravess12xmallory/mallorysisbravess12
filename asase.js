@@ -172,32 +172,29 @@ Rocket.on('message', message => {//roles
         .addField('**Roles** :',`[ ${roles} ]`)
         message.channel.sendEmbed(embed);
     }
-});
-Rocket.on('message', message => {
-     if(message.content.startsWith(prefix + "clear")) {
-         var args = message.content.split(" ").slice(1);
- if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('انت لا تمتلك الخاصية المطلوبه');
-  if (!args[0]) return message.channel.send('**يجب تحديد رقم** :small_orange_diamond: `');
+});client.on('message', msg => {
+	var prefix = "-";
+  if (msg.author.bot) return;
+  if (!msg.content.startsWith(prefix)) return;
+  let command = msg.content.split(" ")[0];
+  command = command.slice(prefix.length);
+  let args = msg.content.split(" ").slice(1);
 
-  message.channel.bulkDelete(args[0]).then(() => {
-    const embed = new Discord.RichEmbed()
-      .setColor(0xF16104)
-      .setDescription(`Cleared ${args[0]} messages.`);
-    message.channel.send({ embed });
-
-    const actionlog = message.guild.channels.find('name', 'log');
-
-    if (!actionlog) return message.channel.send('Can\'t find action-log channel. Are you sure that this channel exists and I have permission to view it? **CANNOT POST LOG.**');
-    const embedlog = new Discord.RichEmbed()
-      .setDescription('Alpha.')
-      .setColor(0xF16104)
-      .addField('Clear By', `<@${message.author.id}> with ID ${message.author.id}`)
-      .addField('Clear in', message.channel)
-    actionlog.send(embedlog);
-   
-  });
-};
-
+    if(command === "clr") {
+        const emoji = client.emojis.find("name", "wastebasket")
+    let textxt = args.slice(0).join("");
+    if(msg.member.hasPermission("MANAGE_MESSAGES")) {
+    if (textxt == "") {
+        msg.delete().then
+    msg.channel.send("**```اختر عدد للمسح```**").then(m => m.delete(3000));
+} else {
+    msg.delete().then
+    msg.delete().then
+    msg.channel.bulkDelete(textxt);
+        msg.channel.send("```Clear : " + textxt + "\n Messages```").then(m => m.delete(3000));
+        }    
+    }
+}
 });
 Rocket.on("message", message => {
 
