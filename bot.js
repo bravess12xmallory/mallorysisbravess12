@@ -312,7 +312,7 @@ Rocket.on('message', message => {//unmute
   .setDescription(`
 <@${men.id}> **Unmuted!**
 
-<@${message.author.id}`)
+<@${message.author.id} `)
 
   Rocket.users.get(men.id).sendEmbed(embed)
   const Embed11 = new Discord.RichEmbed()
@@ -321,7 +321,7 @@ Rocket.on('message', message => {//unmute
   .setDescription(`
 <@${men.id}> **Unmuted!**
 
-<@${message.author.id}`)
+<@${message.author.id} `)
   
   message.channel.sendEmbed(Embed11).then(message => {message.delete(20000)})
       }
@@ -342,7 +342,7 @@ Rocket.on('message', message => {//mute
   .setDescription(`
 <@${men.id}> **Muted!**
 
-<@${message.author.id}`)
+<@${message.author.id} `)
 
   Rocket.users.get(men.id).sendEmbed(embed)
   const Embed11 = new Discord.RichEmbed()
@@ -352,7 +352,7 @@ Rocket.on('message', message => {//mute
 
 <@${men.id}> **Muted!**
 
-<@${message.author.id}`)
+<@${message.author.id} `)
   
   message.channel.sendEmbed(Embed11).then(message => {message.delete(20000)})
       }
