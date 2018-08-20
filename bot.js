@@ -307,7 +307,7 @@ client.on('guildCreate', guild => {
   New Server Add Alpha Bot ✅
 اسم السيرفر: ${guild.name}
 صاحب السيرفر: ${guild.owner}**`);
-client.channels.get("467833183254347797").sendEmbed(embed)
+client.channels.get("481026303412142083").sendEmbed(embed)
 });
 
 client.on('guildDelete', guild => {
@@ -319,15 +319,15 @@ client.on('guildDelete', guild => {
   Server Kicked Alpha Bot :cry:
 اسم السيرفر: ${guild.name}
 صاحب السيرفر: ${guild.owner}**`);
-client.channels.get("467833183254347797").sendEmbed(embed)
+client.channels.get("481026303412142083").sendEmbed(embed)
 });
  
 
 client.on('message', message => {
             if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
-if (message.content.startsWith('>bcall')){
- if (message.author.id !== '380307890235506698') return message.reply('** هذا الأمر قفط لصاحب البوت و شكراًً **')
+if (message.content.startsWith('-bcall')){
+ if (message.author.id !== '380307890235506698') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
  if(!message.author.id === '0') return;
 message.channel.sendMessage('جار ارسال الرسالة |:white_check_mark:')
 client.users.forEach(m =>{
@@ -570,7 +570,7 @@ if (message.content.startsWith(prefix + 'trans')) {
 
         if (args.length === undefined) {
 
-            return message.channel.send("**ترجمة الكتابة.**\استعمل: `-translate <الكلمة لتبي> <االغة>`");
+            return message.channel.send("`-translate <الكلمة لتبي> <االغة>`");
 
         } else {
 
@@ -589,7 +589,7 @@ if (message.content.startsWith(prefix + 'trans')) {
                 const embed = new Discord.RichEmbed()
                     .setAuthor("Translator", client.user.displayAvatarURL)
                     .addField(`Input`, `\`\`\`${args}\`\`\``)
-                    .setColor("#42f4c8")
+                    .setColor("#000000")
                     .addField(`Output`, `\`\`\`${res.text}\`\`\``);
                 return message.channel.send(embed);
             });
@@ -608,8 +608,7 @@ var prefix = "-";
     let i = 1;
         const botssize = message.guild.members.filter(m=>m.user.bot).map(m=>`${i++} - <@${m.id}>`);
           const embed = new Discord.RichEmbed()
-          .setAuthor(message.author.tag, message.author.avatarURL)
-          .setDescription(`**Found ${message.guild.members.filter(m=>m.user.bot).size} bots in this Server**
+          .setDescription(`**${message.guild.members.filter(m=>m.user.bot).size} bots in this Server**
 ${botssize.join('\n')}`)
 .setFooter(client.user.username, client.user.avatarURL)
 .setTimestamp();
@@ -674,13 +673,13 @@ const days = millis / 1000 / 60 / 60 / 24;
 let roles = client.guilds.get(message.guild.id).roles.map(r => r.name);
 var embed  = new Discord.RichEmbed()
 .setAuthor(message.guild.name, message.guild.iconURL)
-.addField("**🆔 Server ID:**", message.guild.id,true)
-.addField("**📅 Created On**", message.guild.createdAt.toLocaleString(),true)
-.addField("**👑 Owned by**",`${message.guild.owner.user.username}#${message.guild.owner.user.discriminator}`)
-.addField("👥 Members ",`[${message.guild.memberCount}]`,true)
-.addField('**💬 Channels **',`**${message.guild.channels.filter(m => m.type === 'text').size}**` + ' text | Voice  '+ `**${message.guild.channels.filter(m => m.type === 'voice').size}** `,true)
-.addField("**🌍 Others **" , message.guild.region,true)
-.addField("** 🔐 Roles **",`**[${message.guild.roles.size}]** Role `,true)
+.addField("**Server ID:**", message.guild.id,true)
+.addField("**Created On:**", message.guild.createdAt.toLocaleString(),true)
+.addField("**Owner:**",`${message.guild.owner.user.username}#${message.guild.owner.user.discriminator}`)
+.addField("**Members :**",`[${message.guild.memberCount}]`,true)
+.addField('**Channels :**',`${message.guild.channels.filter(m => m.type === 'text').size}` + ' text | Voice  '+ `${message.guild.channels.filter(m => m.type === 'voice').size} `,true)
+.addField("**Others :**" , message.guild.region,true)
+.addField("**Roles :**",`[${message.guild.roles.size}] Role `,true)
 .setColor('#000000')
 message.channel.sendEmbed(embed)
 
@@ -774,10 +773,8 @@ message.react("❌")
               if (!message.channel.guild) return;
       if(message.content =='-count')
       var IzRo = new Discord.RichEmbed()
-      .setThumbnail(message.author.avatarURL)
       .setFooter(message.author.username, message.author.avatarURL)
       .setTitle(':tulip:| Members info')
-      .addBlankField(true)
       .addField('عدد اعضاء السيرفر',`${message.guild.memberCount}`)
       message.channel.send(IzRo);
     });
@@ -802,13 +799,13 @@ message.react("❌")
               console.log(`\n${message.author.tag} has ${nul} invites in ${guild.name}\n`)
               var embed = new Discord.RichEmbed()
                   .setColor("#000000")
-                    .addField(`${message.author.username}`, `لقد قمت بدعوة **${nul}** شخص`)
+                    .addField(`${message.author.username}`, `لقد قمت بدعوة **${nul}**`)
                           message.channel.send({ embed: embed });
                       return;
                     } else {
                        var embed = new Discord.RichEmbed()
                         .setColor("#000000")
-                        .addField(`${message.author.username}`, `لم تقم بدعوة أي شخص لهذة السيرفر`)
+                        .addField(`${message.author.username}`, `لم تقم بدعوة أي شخص لهذا السيرفر`)
 
                        message.channel.send({ embed: embed });
                         return;
@@ -942,10 +939,9 @@ function getValue(key, array) {
   
   var bc = new
        Discord.RichEmbed()
-       .setColor('RANDOM')
+       .setColor('BLACK')
        .setTitle('Broadcast')
        .addField('سيرفر', message.guild.name)
-       .addField('المرسل', message.author.username)
        .addField('الرسالة', args)
        .setThumbnail(message.author.avatarURL)
        .setFooter(copy, client.user.avatarURL);
@@ -1338,9 +1334,9 @@ if (message.content.startsWith(prefix + 'perms')) {
          if(!message.channel.guild) return;
          var perms = JSON.stringify(message.channel.permissionsFor(message.author).serialize(), null, 4);
          var zPeRms = new Discord.RichEmbed()
-         .setColor('RANDOM')
+         .setColor('BLACK')
          .setTitle(':tools: Permissions')
-         .addField('Your Permissions:',perms)
+         .addField('**Your Permissions:**',perms)
                   message.channel.send({embed:zPeRms});
 
     }
@@ -2062,7 +2058,7 @@ client.on('message', message => {
     .setColor("#707070")
     .addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true) 
     .addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)               
-    .setFooter(`Speed Bot`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')                                 
+    .setFooter(`Alpha Bot`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')                                 
     .setThumbnail(heg.avatarURL);
     message.channel.send(id)
 }       });
@@ -2071,7 +2067,7 @@ client.on('message', message => {
 client.on('message', message => {
     if (message.content.startsWith("-bans")) {
         message.guild.fetchBans()
-        .then(bans => message.channel.send(`${bans.size} عدد اشخاص المبندة من السيرفر `))
+        .then(bans => message.channel.send(`${bans.size} الاشخاص المبندين من السيرفر `))
   .catch(console.error);
 }
 });
@@ -2082,7 +2078,7 @@ client.on('message', message => {
             if(!message.channel.guild) return;
         let embed = new Discord.RichEmbed()
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
-        .setTitle(`:small_orange_diamond: اضغط هنا `)
+        .setTitle(`:small_orange_diamond: Alpha Bot `)
         .setURL(`https://discordapp.com/oauth2/authorize?client_id=480653185208418304&permissions=8&scope=bot`)
         .setThumbnail(" https://cdn.discordapp.com/avatars/377904849783750667/6c76e412f18c142dfd711d05fb363869.png?size=2048")        
      message.channel.sendEmbed(embed);
