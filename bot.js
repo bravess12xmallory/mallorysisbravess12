@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const Rocket = new Discord.Client();
 const moment = require("moment");
 const fs = require('fs')
-const prefix = '!!'
+const prefix = '='
 
 Rocket.on('ready', () => {
   
@@ -12,7 +12,7 @@ Rocket.user.setStatus('idle');
 
 Rocket.on('message', message => { //ping
     if(!message.channel.guild) return;
-if (message.content.startsWith('!!ping')) {
+if (message.content.startsWith('=ping')) {
 if(!message.channel.guild) return;
 var msg = `${Date.now() - message.createdTimestamp}`
 var api = `${Math.round(Rocket.ping)}`
@@ -25,7 +25,7 @@ message.channel.send({embed:embed});
 }
 });
 Rocket.on('ready', () => { //playing
-    Rocket.user.setGame(`!!help | !!invite`,'https://www.twitch.tv/v5bz');
+    Rocket.user.setGame(`=help`,'https://www.twitch.tv/v5bz');
 });
 Rocket.on('message',function(message) {
     let toKick = message.mentions.users.first();
@@ -51,13 +51,13 @@ Rocket.on('message',function(message) {
 });
 
 Rocket.on('message', async message => {
-  if(message.content.startsWith(prefix + "voicesetup")) {
-  if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply(':x: **ليس لديك الصلاحيات الكافية**');
-  if(!message.guild.member(Rocket.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply(':x: **ليس معي الصلاحيات الكافية**');
+  if(message.content.startsWith(prefix + "voice set")) {
+  if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('**ليس لديك الصلاحيات الكافية**');
+  if(!message.guild.member(Rocket.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('**ليس معي الصلاحيات الكافية**');
   var args = message.content.split(' ').slice(1).join(' ');
-  if(args && !args.includes(0)) return message.channel.send(':negative_squared_cross_mark: » فشل اعداد الروم الصوتي .. __يجب عليك كتابة 0 في اسم الروم__');
+  if(args && !args.includes(0)) return message.channel.send('**يجب ان تضيف بأخر الاسم رقم 0** :small_orange_diamond: ');
   if(!args) args = `VoiceOnline: [ ${message.guild.members.filter(s => s.voiceChannel).size} ]`;
-  message.channel.send(':white_check_mark: » تم عمل الروم الصوتي بنجاح');
+  message.channel.send('**تم انشاء عداد الفويس** :small_orange_diamond: ');
   message.guild.createChannel(`${args.replace(0, message.guild.members.filter(s => s.voiceChannel).size)}`, 'voice').then(c => {
     c.overwritePermissions(message.guild.id, {
       CONNECT: false,
@@ -99,17 +99,17 @@ Rocket.on("message", function(message) {
 });
 
                         Rocket.on('message', message => { //bot
-                            if (message.content.startsWith("!!bot")) {
+                            if (message.content.startsWith("=bot")) {
                             message.channel.send({
                                 embed: new Discord.RichEmbed()
                                     .setAuthor(Rocket.user.username,Rocket.user.avatarURL)
                                     .setThumbnail(Rocket.user.avatarURL)
                                     .setColor('FFFFFF')
-                                    .setTitle('**Brave 🔸** ')
+                                    .setTitle('**Brave Status:** ')
                                     .addField('Uptime :', [timeCon(process.uptime())], true)
                                     .addField('Ping :' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
                                     .addField('servers``', [Rocket.guilds.size], true)
-                                          .addField('Prefix :' , `[ ${prefix} ]` , true)
+                                          .addField('Prefix :' , ` ${prefix} ` , true)
 
                             })
                         }
@@ -139,7 +139,6 @@ if(msg.content.startsWith (prefix  + 'server')) {
  .addField(':large_blue_circle:**عدد الاعضاء الاونلاين**',`[ ${msg.guild.members.filter(m=>m.presence.status == 'online').size} ]`,true)
  .addField(':pencil:**الرومات الكتابية**',`[ ${msg.guild.channels.filter(m => m.type === 'text').size} ]`,true)
  .addField(':microphone:**رومات الصوت**',`[ ${msg.guild.channels.filter(m => m.type === 'voice').size} ]`,true)
- .addField(':crown:** الأونـر**',`[ ${msg.guild.owner} ]`,true)
  .addField(':id:**ايدي السيرفر**',`[ ${msg.guild.id} ]`,true)
  msg.channel.send({embed:embed});
 }
@@ -147,7 +146,7 @@ if(msg.content.startsWith (prefix  + 'server')) {
 
 
 Rocket.on('message', message => {//av mension
-    if (message.content.startsWith("!!avatar")) {
+    if (message.content.startsWith("=avatar")) {
 
         var mentionned = message.mentions.users.first();
     var king66s;
@@ -166,7 +165,7 @@ Rocket.on('message', message => {//av mension
     }
   });
 Rocket.on('message', message => {//roles
-    if (message.content === "!!roles") {
+    if (message.content === "=roles") {
         var roles = message.guild.roles.map(roles => `${roles.name}, `).join(' ')
         const embed = new Discord.RichEmbed()
         .setColor('FFFFFF')
@@ -175,7 +174,7 @@ Rocket.on('message', message => {//roles
     }
 });
 Rocket.on('message', message => {//rooms
-    if (message.content === "!!rooms") {
+    if (message.content === "=rooms") {
         var channels = message.guild.channels.map(channels => `${channels.name}, `).join(' ')
         const embed = new Discord.RichEmbed()
         .setColor('FFFFFF')
@@ -187,7 +186,7 @@ Rocket.on('message', message => {
      if(message.content.startsWith(prefix + "clear")) {
          var args = message.content.split(" ").slice(1);
  if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('انت لا تمتلك الخاصية المطلوبه');
-  if (!args[0]) return message.channel.send('يرجى تحديد رقم | `!!clear 10`');
+  if (!args[0]) return message.channel.send('**يجب تحديد رقم** :small_orange_diamond: `');
 
   message.channel.bulkDelete(args[0]).then(() => {
     const embed = new Discord.RichEmbed()
@@ -210,63 +209,32 @@ Rocket.on('message', message => {
 };
 
 });
-Rocket.on('message', message => {
-        var prefix = '!'; // هنا تقدر تغير البرفكس
-	var command = message.content.split(" ")[0];
-	if(command == prefix + 'bc') { // الكوماند !bc
-		var args = message.content.split(' ').slice(1).join(' ');
-		if(message.author.bot) return;
-		if(!args) return message.channel.send(`**➥ Useage:** ${prefix}bc كلامك`);
-		
-		let bcSure = new Discord.RichEmbed()
-		.setTitle(`:mailbox_with_mail: **هل انت متأكد انك تريد ارسال رسالتك الى** ${message.guild.memberCount} **عضو**`)
-		.setThumbnail(client.user.avatarURL)
-		.setColor('FFFFFF')
-		.setDescription(`**\n:envelope: ➥ رسالتك**\n\n${args}`)
-		.setTimestamp()
-		.setFooter(message.author.tag, message.author.avatarURL)
-		
-		message.channel.send(bcSure).then(msg => {
-			msg.react('✅').then(() => msg.react('❎'));
-			message.delete();
-			
-			
-			let yesEmoji = (reaction, user) => reaction.emoji.name === '✅'  && user.id === message.author.id;
-			let noEmoji = (reaction, user) => reaction.emoji.name === '❎' && user.id === message.author.id;
-			
-			let sendBC = msg.createReactionCollector(yesEmoji);
-			let dontSendBC = msg.createReactionCollector(noEmoji);
-			
-			sendBC.on('collect', r => {
-				message.guild.members.forEach(member => {
-					member.send(args.replace(`[user]`, member)).catch();
-					if(message.attachments.first()){
-						member.sendFile(message.attachments.first().url).catch();
-					}
-				})
-				message.channel.send(`:timer: **يتم الان الارسال الى** \`\`${message.guild.memberCount}\`\` **عضو**`).then(msg => msg.delete(5000));
-				msg.delete();
-			})
-			dontSendBC.on('collect', r => {
-				msg.delete();
-				message.reply(':white_check_mark: **تم الغاء ارسال رسالتك بنجاح**').then(msg => msg.delete(5000));
-			});
-		})
-	}
+Rocket.on("message", message => {
+
+            if (message.content.startsWith(prefix + "bc")) {
+                         if (!message.member.hasPermission("ADMINISTRATOR"))  return;
+  let args = message.content.split(" ").slice(1);
+  var argresult = args.join(' '); 
+  message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
+ m.send(`${argresult}\n ${m}`);
+})
+ message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'all').size}\` : عدد الاعضاء المستلمين`); 
+ message.delete(); 
+};     
 });
 Rocket.on('message', message => {//help msg
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
-        message.react("☑")
+        message.react("")
 
 
 
 
-        message.author.sendMessage(`**لتفعيل اللوق انشئ روم اسمه log**
-
+        message.author.sendMessage(`
         __**الاوامر الادارية :gear:**__
 -
   ❖${prefix}** bc ** ==>**لارسال رسالة لكل الاعضاء**
+  ❖${prefix}** autorole ** ==>**خاصية رتبة تلقائية**
   ❖${prefix}** role <user> ** ==>**لاعطاء شخص رتبة**
   ❖${prefix}** role all ** ==>**لاعطاء الكل الرتبة المحددة**
   ❖${prefix}** role users ** ==>**لاعطاء الاعضاء فقط**
@@ -279,23 +247,21 @@ Rocket.on('message', message => {//help msg
   ❖${prefix}** clear ** ==>**لمسح كل رسائل الشات**
         __**الاوامر العامة :coffee:**__
 -
-  ❖${prefix}** avatar ** ==>**لكي يعطيك رابط صورتك او صورة صديقك**
-  ❖${prefix}** s-avatar ** ==>**لكي يعطيك رابط صورة السيرفر**
+  ❖${prefix}** avatar ** ==>**اظهار صورتك او صورة شخص اخر**
+  ❖${prefix}** icon ** ==>**اظهار صورة السيرفر**
   ❖${prefix}** server ** ==>**لمعلومات السيرفر**
   ❖${prefix}** ping ** ==>**للتحقق من سرعة الاتصال**
   ❖${prefix}** bot ** ==>**معلومات عن البوت**
   ❖${prefix}** invite ** ==>**لاحضار البوت الى سيرفرك**
   ❖${prefix}** time ** ==>**لرؤية الوقت**
   ❖${prefix}** color ** ==>**لتغيير لونك**
-  ❖${prefix}** roles ** ==>**لكي ترى كل رتب السيرفر**
-  ❖${prefix}** rooms ** ==>**لكي ترى كل قنوات السيرفر**
-  ❖${prefix}** date ** ==>**لكي ترى التاريخ**
-        __**الاوامر الترفيهية :video_game:**__
+  ❖${prefix}** roles ** ==>**اظهار رتب السيرفر**
+  ❖${prefix}** rooms ** ==>**اظهار رومات السيرفر**
+  ❖${prefix}** support ** ==>**اظهار سيرفر الدعم الفني**
+        __**الاوامر اخرى :video_game:**__
 -
-  ❖${prefix}** cuttweet ** ==>**لكي يعطيك جمل كت تويت عشوائية**
+  ❖${prefix}** cuttweet ** ==>**اسألة عشوائيه**
   ❖${prefix}** roll ** ==>**لاختيار رقم عشوائي**
- - 
-  ❖ **Support : https://discord.gg/g4cq9ZT**
 
 =================================
 
@@ -315,24 +281,31 @@ Rocket.on('message', message => {//help msg
 
 
 Rocket.on('message', message => {//help
-     if (message.content === "!!help") {
-  message.channel.send('تم ارسال جميع الاوامر بالخاص')
+     if (message.content === "=help") {
+  message.channel.send('**تم ارسال الاوامر بالخاص** :small_orange_diamond: ')
     }
 });
-Rocket.on('message', message => {//invite
-     if (message.content === "!!invite") {
-     let embed = new Discord.RichEmbed()
-.setColor("FFFFFF")
-.setTitle("invite Brave")
-.setAuthor("Brave", "https://discordapp.com/channels/350923773140271115/469576599696834560")
-.setTimestamp()
-.setURL("https://discordapp.com/api/oauth2/authorize?client_id=480653185208418304&permissions=8&scope=bot")
-  message.author.sendEmbed(embed);
-    }
+Rocket.on('message', message => {
+  if(message.content === '=invite') {
+  const embed = new Discord.RichEmbed()
+  .setTitle('Invite Brave BOT!')
+  .setURL('https://discordapp.com/api/oauth2/authorize?client_id=480653185208418304&permissions=8&scope=bot')
+  .setColor('FFFFFF')
+  message.author.send(embed);
+  }
+});
+Rocket.on('message', message => {
+  if(message.content === '=support') {
+  const embed = new Discord.RichEmbed()
+  .setTitle('Support Server.')
+  .setURL('https://discord.gg/g4cq9ZT')
+  .setColor('FFFFFF')
+  message.author.send(embed);
+  }
 });
 Rocket.on('message', message => {//unmute
-    if (message.content.startsWith('!!unmute')) {
-  if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send("**انت لا تمتلك الخاصيه المطلوبه** | ❎ ");
+    if (message.content.startsWith('=unmute')) {
+  if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send("**انت لا تمتلك الخاصيه المطلوبه** :small_orange_diamond:");
    let men = message.mentions.users.first()
    let mas = message.author
    if(!men) return message.channel.send('`منشن الشخص الذي تريد فك الميوت عنه `');
@@ -362,8 +335,8 @@ Rocket.on('message', message => {//unmute
       }
 });
 Rocket.on('message', message => {//mute
-    if (message.content.startsWith('!!mute')) {
-  if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send("**انت لا تمتلك الخاصيه المطلوبه** | ❎ ");
+    if (message.content.startsWith('=mute')) {
+  if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send("**انت لا تمتلك الخاصيه المطلوبه** :small_orange_diamond:");
   let men = message.mentions.users.first()
   let mas = message.author
   if(!men) return message.channel.send('`منشن الشخص الذي تريد ان تعطيه ميوت كتابي` ');
@@ -422,10 +395,8 @@ var currentTime = new Date(),
                 .setTitle("**الوقت وتاريخ**")
                 .setColor('FFFFFF')
                 .setTimestamp()
-                .addField('Time',
-                " "+ hours + ":" + minutes + " ")
-                .addField('Date',
-                " "+ Day + "-" + Month + "-" + Year + " ")
+                .addField('**Time :**'," "+ hours + ":" + minutes + " .")
+                .addField('**Date :**'," "+ Day + "-" + Month + "-" + Year + " .")
 
                  message.channel.sendEmbed(Date15);
         }
@@ -462,7 +433,7 @@ var currentTime = new Date(),
 ]
 
  Rocket.on('message', message => {//cuttweet
-   if (message.content.startsWith("!!cuttweet")) {
+   if (message.content.startsWith("=cuttweet")) {
                 if(!message.channel.guild) return message.reply('** This command only for servers**');
   var embed = new Discord.RichEmbed()
   .setColor('FFFFFF')
@@ -475,10 +446,10 @@ var currentTime = new Date(),
 });
 Rocket.on('message', message => {//color
     let args = message.content.split(' ').slice(1);
-if(message.content.split(' ')[0] == '!!color'){
+if(message.content.split(' ')[0] == '=color'){
      const embedd = new Discord.RichEmbed()
 .setFooter('Requested by '+message.author.username, message.author.avatarURL)
-.setDescription(`**لايوجد لون بهذا الرقم ** :x:`)
+.setDescription(`**لايوجد لون بهذا الرقم **:small_orange_diamond:`)
 .setColor('ff0000')
 
 if(!isNaN(args) && args.length > 0)
@@ -552,7 +523,7 @@ Rocket.on('message', function(message) {//roll
         if(message.content.startsWith(prefix + 'roll')) {
             let args = message.content.split(" ").slice(1);
             if (!args[0]) {
-                message.channel.send('**ضع رقم معين ليتم السحب منه**');
+                message.channel.send('**ضع رقم معين ليتم السحب منه** :small_orange_diamond:');
                 return;
                 }
         message.channel.send(Math.floor(Math.random() * args.join(' ')));
@@ -565,7 +536,7 @@ Rocket.on('message', function(message) {//roll
     Rocket.on("message", message => {    //serv-av
         if(!message.channel.guild) return;
  if(message.author.bot) return;
-    if(message.content === "!!s-avatar"){
+    if(message.content === "=icon"){
         const embed = new Discord.RichEmbed()
 
     .setTitle(`صورة سيرفر : ** ${message.guild.name} **`)
@@ -658,6 +629,72 @@ msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
     }
     
   });
+const fs = require("fs")
+const client = new Discord.Client();
+let ar = JSON.parse(fs.readFileSync(`./AutoRole.json`, `utf8`))
+
+
+ Rocket.on('guildMemberAdd', member => {
+  if(!ar[member.guild.id]) ar[member.guild.id] = {
+  onoff: 'Off',
+  role: 'Member'
+  }
+  if(ar[member.guild.id].onoff === 'Off') return;
+member.addRole(member.guild.roles.find(`name`, ar[member.guild.id].role)).catch(console.error)
+})
+
+Rocket.on('message', message => { 
+  var sender = message.author
+
+if(!message.guild) return
+  if(!ar[message.guild.id]) ar[message.guild.id] = {
+  onoff: 'Off',
+  role: 'Member'
+  }
+
+if(message.content.startsWith(prefix + `autorole`)) {
+         
+  let perms = message.member.hasPermission(`MANAGE_ROLES`)
+
+  if(!perms) return message.reply(`You don't have permissions, required permission : Manage Roles.`)
+  let args = message.content.split(" ").slice(1)
+  if(!args.join(" ")) return message.reply(`${prefix}autorle toggle/ set [ROLE NAME]`)
+  let state = args[0]
+  if(!state.trim().toLowerCase() == 'toggle' || !state.trim().toLowerCase() == 'setrole') return message.reply(`Please type a right state, ${prefix}modlogs toggle/setrole [ROLE NAME]`) 
+    if(state.trim().toLowerCase() == 'toggle') { 
+     if(ar[message.guild.id].onoff === 'Off') return [message.channel.send(`**AutoRole is On** :small_orange_diamond:`), ar[message.guild.id].onoff = 'On']
+     if(ar[message.guild.id].onoff === 'On') return [message.channel.send(`**AutoRole is Off** :small_orange_diamond:`), ar[message.guild.id].onoff = 'Off']
+    }
+   if(state.trim().toLowerCase() == 'set') {
+   let newRole = message.content.split(" ").slice(2).join(" ")
+   if(!newRole) return message.reply(`${prefix}autorole setrole [ROLE NAME]`)
+     if(!message.guild.roles.find(`name`,newRole)) return message.reply(`I Cant Find This Role.`)
+    ar[message.guild.id].role = newRole
+     message.channel.send(`**AutoRole has Change to :** ${newRole}.`)
+   } 
+         }
+if(message.content === prefix + 'info') {
+    let perms = message.member.hasPermission(`MANAGE_GUILD`) 
+    if(!perms) return message.reply(`You don't have permissions.`)
+    var embed = new Discord.RichEmbed()
+
+.addField(`Autorole : :sparkles:  `, `
+
+State : __${ar[message.guild.id].onoff}__
+Role : __${ar[message.guild.id].role}__`)
+
+
+    .setColor(`WHITE`)
+    message.channel.send({embed})
+  }
+
+
+    fs.writeFile("./AutoRole.json", JSON.stringify(ar), (err) => {
+    if (err) console.error(err)
+  });
+
+
+});
 Rocket.login(process.env.BOT_TOKEN);  //لا تغير هنااااااااااااااااا
 //Test
 
