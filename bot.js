@@ -309,21 +309,20 @@ Rocket.on('message', message => {//unmute
       })
   const embed = new Discord.RichEmbed()
   .setColor("FFFFFF")
-  .setDescription(`**
-   <@${men.id}>
-  تم فك الميوت الكتابي
-  بواسطة : <@${message.author.id}> **`)
-  .setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452093541003296788/start-button-hi.png")
+  .setDescription(`
+<@${men.id}> **Unmuted!**
+
+<@${message.author.id}`)
 
   Rocket.users.get(men.id).sendEmbed(embed)
   const Embed11 = new Discord.RichEmbed()
   .setColor("FFFFFF")
   .setAuthor(message.guild.name, message.guild.iconURL)
-  .setDescription(`          <@${men.id}>
-  تم فك الميوت الكتابي
-  بواسطة : <@${message.author.id}>
-  `)
-  .setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452093541003296788/start-button-hi.png")
+  .setDescription(`
+<@${men.id}> **Unmuted!**
+
+<@${message.author.id}`)
+  
   message.channel.sendEmbed(Embed11).then(message => {message.delete(20000)})
       }
 });
@@ -340,20 +339,21 @@ Rocket.on('message', message => {//mute
       })
   const embed = new Discord.RichEmbed()
   .setColor("FFFFFF")
-  .setDescription(`**
-   <@${men.id}>
-  لقد تم اعطائك ميوت كتابي
-  بواسطة : <@${message.author.id}> **`)
-  .setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452090205793681419/fd684707fc14f41663f15ecebf089f06.png")
+  .setDescription(`
+<@${men.id}> **Muted!**
+
+<@${message.author.id}`)
 
   Rocket.users.get(men.id).sendEmbed(embed)
   const Embed11 = new Discord.RichEmbed()
   .setColor("FFFFFF")
   .setAuthor(message.guild.name, message.guild.iconURL)
-  .setDescription(`          <@${men.id}>
-  لقد تم اعطائه الميوت الكتابي بنجاح
-  بواسطة : <@${message.author.id}> `)
-  .setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452090205793681419/fd684707fc14f41663f15ecebf089f06.png")
+  .setDescription(`
+
+<@${men.id}> **Muted!**
+
+<@${message.author.id}`)
+  
   message.channel.sendEmbed(Embed11).then(message => {message.delete(20000)})
       }
 
