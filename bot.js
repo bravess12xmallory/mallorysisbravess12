@@ -265,7 +265,6 @@ client.on("message", message => {
 ❖-لعبة فكك ~ فكك
 ❖-عواصم عشوائية ~ عواصم
 ❖-لعبة كت تويت ~ كت تويت
-❖-roll <number> ~ قرعة
 ❖-لو خيروك بطريقة حلوة ~ لو خيروك
 ❖-لعبة مريم ~ مريم
 ❖-فوائد ونصائح  ~ هل تعلم
@@ -1847,15 +1846,6 @@ var prefix = "-";
 
     }
       });
-
-	  client.on('message', message => {
-        let args = message.content.split(" ").slice(1).join(" ")
-        let men = message.mentions.users.first()
-        if(message.content.startsWith(prefix + "roll")){
-            if(!args) return message.channel.send("الرجاء اختيار رقم")
-            message.channel.send(Math.floor(Math.random() * args))
-        }
-    });
 
 var al7arthyCodes = ["https://f.top4top.net/p_682it2tg6.png","https://e.top4top.net/p_682a1cus5.png","https://d.top4top.net/p_682pycol4.png","https://c.top4top.net/p_682vqehy3.png","https://b.top4top.net/p_682mlf9d2.png","https://a.top4top.net/p_6827dule1.png","https://b.top4top.net/p_682g1meb10.png","https://a.top4top.net/p_682jgp4v9.png","https://f.top4top.net/p_682d4joq8.png","https://e.top4top.net/p_6828o0e47.png","https://d.top4top.net/p_6824x7sy6.png","https://c.top4top.net/p_682gzo2l5.png","https://b.top4top.net/p_68295qg04.png","https://a.top4top.net/p_682zrz6h3.png","https://f.top4top.net/p_6828vkzc2.png","https://e.top4top.net/p_682i8tb11.png"]
 var al7arthyCodes2 = ["📙__60%__  **|**  📘__40%__","📙__63%__  **|**  📘__37%__","📙__89%__  **|**  📘__11%__","📙__97%__  **|**  📘__3%__"]
