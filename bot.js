@@ -225,7 +225,7 @@ Rocket.on("message", message => {
 Rocket.on('message', message => {//help msg
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
-        message.react("📝")
+        message.react("☑")
 
 
 
@@ -395,8 +395,10 @@ var currentTime = new Date(),
                 .setTitle("**الوقت وتاريخ**")
                 .setColor('FFFFFF')
                 .setTimestamp()
-                .addField('**Time :**'," "+ hours + ":" + minutes + " .")
-                .addField('**Date :**'," "+ Day + "-" + Month + "-" + Year + " .")
+                .addField('**Time :**',
+                " "+ hours + ":" + minutes + " .")
+                .addField('**Date :**',
+                " "+ Day + "-" + Month + "-" + Year + " .")
 
                  message.channel.sendEmbed(Date15);
         }
