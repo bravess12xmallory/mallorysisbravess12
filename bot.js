@@ -782,6 +782,6 @@ client.on('message', message => {
     return message.reply(`**يمنع نشر روابط الانفايت بهذا السيرفر**`)
     }
 }
-});
+	
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
