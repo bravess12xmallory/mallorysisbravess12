@@ -415,7 +415,10 @@ client.on("message", message => {
 •| **-ban** ~ طرد عضو من السيرفر [ -ban @mention ]
 •| **-count** ~ معرفة عدد اعضاء السيرفر
 •| **-invites** ~ معرفة كم شخص قمت بدعوته الى السيرفر
-•| **-cal** ~ حاسبة 
+•| **-cal** ~ حاسبة [ -cal 5+5 ]
+•| **-invite-link** ~ ارسال جميع روابط الانفايت التي انشأتها بالخاص
+•| **-short** ~ اختصار روابط طويله
+•| **-tag** ~ كتابة اسمك بالرسم [ -tag Hybh ]
 
 •| **-support** ~ سيرفر الدعم
 •| **-inv** ~ اضافة البوت
@@ -430,47 +433,6 @@ client.on("message", message => {
     if (message.content.startsWith("-avatar")) {
 message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 }
-});
-
-client.on('message', message => {
-    if (message.content.startsWith("-trans")) {
-
-    let toTrans = message.content.split(' ').slice(1);
-    let language;
-
-    language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
-    if (!language) {
-        return message.reply(`Please supply valid agruments.\n**Example** \`-translate [text] to [language]\``);
-    }
-    let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
-    translate(finalToTrans, {to: language}).then(res => {
-            message.channel.send({embed: {
-                color: 3447003,
-                author: {
-                  name: 'Dragon\'s translator',
-                  icon_url: client.user.avatarURL
-                },
-                fields: [{
-                    name: "Translator",
-                    value: `**From:** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**To: **${language}\n\`\`\`${res.text}\`\`\``
-                  }
-                ],
-                timestamp: new Date(),
-                footer: {
-                  icon_url: client.user.avatarURL,
-                  text: "Dragon"
-                }
-              }
-            });
-    }).catch(err => {
-        message.channel.send({
-            embed: {
-                description: 'language not found.',
-                color: 0xE8642B
-            }
-        });
-    });
-    }
 });
 
 client.on('message', message => {
@@ -630,4 +592,165 @@ client.channels.get(channel);
   console.log("Done");
 });
 });
+});
+
+
+
+client.on('message', message => {
+	var prefix = "-";
+if (message.content.startsWith(prefix + 'tag')) {
+    let args = message.content.split(" ").slice(1);
+if(!args[0]) return message.reply('يرجى كتابة نص');  
+
+    figlet(args.join(" "), (err, data) => {
+              message.channel.send("```" + data + "```")
+           })
+}
+});
+
+
+
+client.on('message', message => { 
+	var prefix = "-";
+ let args = message.content.split(' ').slice(1);
+    if(message.content.startsWith(prefix + 'short')) {
+    if(!message.channel.guild) return;  
+
+        googl.setKey('AIzaSyC2Z2mZ_nZTcSvh3QvIyrmOIFP6Ra6co6w');
+        googl.getKey();
+        googl.shorten(args.join(' ')).then(shorturl => {
+            message.channel.send(''+shorturl)
+        }).catch(e=>{
+            console.log(e.message);
+            message.channel.send('Error!');
+        });
+}
+});
+
+        if(message.content.startsWith(prefix + 'invite-link')) {
+let guild = message.guild
+var codes = [""]
+message.channel.send("**تم ارسال جميع الروابط التي انشأتها**")
+guild.fetchInvites()
+.then(invites => {
+invites.forEach(invite => {
+if (invite.inviter === message.author) {
+codes.push(`discord.gg/${invite.code}`)
+}
+})
+}).then(m => {
+if (codes.length < 0) {
+    var embed = new Discord.RichEmbed()
+.setColor("#000000")
+.addField(`All links create in ${message.guild.name}`, `**ليس تقم بأنشئ اي رابط بعد**`)
+message.author.send({ embed: embed });
+return;
+} else {
+    var embed = new Discord.RichEmbed()
+.setColor("#000000")
+.addField(`Your invite codes in ${message.guild.name}`, `links:\n${codes.join("\n")}`)
+message.author.send({ embed: embed });
+return;
+}
+})
+}
+
+});
+
+
+
+const Langs = ['afrikaans', 'albanian', 'amharic', 'arabic', 'armenian', 'azerbaijani', 'bangla', 'basque', 'belarusian', 'bengali', 'bosnian', 'bulgarian', 'burmese', 'catalan', 'cebuano', 'chichewa', 'chinese simplified', 'chinese traditional', 'corsican', 'croatian', 'czech', 'danish', 'dutch', 'english', 'esperanto', 'estonian', 'filipino', 'finnish', 'french', 'frisian', 'galician', 'georgian', 'german', 'greek', 'gujarati', 'haitian creole', 'hausa', 'hawaiian', 'hebrew', 'hindi', 'hmong', 'hungarian', 'icelandic', 'igbo', 'indonesian', 'irish', 'italian', 'japanese', 'javanese', 'kannada', 'kazakh', 'khmer', 'korean', 'kurdish (kurmanji)', 'kyrgyz', 'lao', 'latin', 'latvian', 'lithuanian', 'luxembourgish', 'macedonian', 'malagasy', 'malay', 'malayalam', 'maltese', 'maori', 'marathi', 'mongolian', 'myanmar (burmese)', 'nepali', 'norwegian', 'nyanja', 'pashto', 'persian', 'polish', 'portugese', 'punjabi', 'romanian', 'russian', 'samoan', 'scottish gaelic', 'serbian', 'sesotho', 'shona', 'sindhi', 'sinhala', 'slovak', 'slovenian', 'somali', 'spanish', 'sundanese', 'swahili', 'swedish', 'tajik', 'tamil', 'telugu', 'thai', 'turkish', 'ukrainian', 'urdu', 'uzbek', 'vietnamese', 'welsh', 'xhosa', 'yiddish', 'yoruba', 'zulu'];
+
+client.on('message', message => {
+	var prefix = "-";
+if (message.content.startsWith(prefix + 'trans')) {
+    let args = message.content.split(" ").slice(1);
+    if (!args[0]) {
+    
+        const embed = new Discord.RichEmbed()
+            .setColor("FFFFFF")
+            .setDescription("`-translate <الكلمة لتبي> <االغة>`");
+
+        return message.channel.send(embed);
+
+    } else {
+
+        if (args.length === undefined) {
+
+            return message.channel.send("-translate <الكلمة لتبي> <االغة>");
+
+        } else {
+
+            let transArg = args[0].toLowerCase();
+
+            args = args.join(' ').slice(1)
+            let translation;
+
+            if (!Langs.includes(transArg)) return message.channel.send(`**Language not found.**`);
+            args = args.slice(transArg.length);
+
+            translate(args, {
+                to: transArg
+            }).then(res => {
+
+                const embed = new Discord.RichEmbed()
+                    .setAuthor("Translator", client.user.displayAvatarURL)
+                    .addField(`النص`, `\`\`\`${args}\`\`\``)
+                    .setColor("#000000")
+                    .addField(`الترجمه`, `\`\`\`${res.text}\`\`\``);
+                return message.channel.send(embed);
+            });
+        }
+    }
+}
+});
+
+
+const adminprefix = "-v";
+const devs = ['380307890235506698','0'];
+client.on('message', message => {
+  var argresult = message.content.split(` `).slice(1).join(' ');
+    if (!devs.includes(message.author.id)) return;
+    
+if (message.content.startsWith(adminprefix + 'setgame')) {
+  client.user.setGame(argresult);
+    message.channel.sendMessage(`**${argresult} تم تغيير بلاينق البوت إلى **`)
+} else 
+  if (message.content.startsWith(adminprefix + 'setname')) {
+client.user.setUsername(argresult).then
+    message.channel.sendMessage(`**${argresult}** : تم تغيير أسم البوت إلى`)
+return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");
+} else
+  if (message.content.startsWith(adminprefix + 'setavatar')) {
+client.user.setAvatar(argresult);
+  message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
+      } else     
+if (message.content.startsWith(adminprefix + 'setT')) {
+  client.user.setGame(argresult, "https://www.twitch.tv/idk");
+    message.channel.sendMessage(`**تم تغيير تويتش البوت إلى  ${argresult}**`)
+}
+});
+
+client.on('guildCreate', guild => {
+         const embed = new Discord.RichEmbed()
+     .setColor("BLACK")
+     .setTitle('Invite Alpha Bot')
+     .setURL('https://discordapp.com/oauth2/authorize?client_id=480653185208418304&permissions=8&scope=bot')
+  .setDescription(`**
+  New Server Add Alpha Bot 
+Name Server: ${guild.name}
+Owner Server: ${guild.owner}**`);
+client.channels.get("481026303412142083").sendEmbed(embed)
+});
+
+client.on('guildDelete', guild => {
+         const embed = new Discord.RichEmbed()
+     .setColor("BLACK")
+     .setTitle('Invite Alpha Bot')
+     .setURL('https://discordapp.com/oauth2/authorize?client_id=480653185208418304&permissions=8&scope=bot')
+  .setDescription(`**
+  Server Kicked Alpha Bot :cry:
+Name Server: ${guild.name}
+Owner Server: ${guild.owner}**`);
+client.channels.get("481026303412142083").sendEmbed(embed)
 });
