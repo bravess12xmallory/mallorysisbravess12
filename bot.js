@@ -27,6 +27,7 @@ const sql = require("sqlite");
 ,spee={};
 
 
+client.login(process.env.BOT_TOKEN);
 
 var guilds = {};
 client.on('guildBanAdd', function(guild) {
@@ -643,7 +644,7 @@ codes.push(`discord.gg/${invite.code}`)
 if (codes.length < 0) {
     var embed = new Discord.RichEmbed()
 .setColor("#000000")
-.addField(`All links create in ${message.guild.name}`, `**ليس تقم بأنشئ اي رابط بعد**`)
+.addField(`All links create in ${message.guild.name}`, `**لم تقم بأنشئ اي رابط بعد**`)
 message.author.send({ embed: embed });
 return;
 } else {
@@ -781,7 +782,6 @@ client.on('message', message => {
         message.delete()
     return message.reply(`**يمنع نشر روابط الانفايت بهذا السيرفر**`)
     }
-}
+});
 	
 // THIS  MUST  BE  THIS  WAY
-client.login(process.env.BOT_TOKEN);
