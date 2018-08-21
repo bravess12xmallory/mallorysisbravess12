@@ -774,6 +774,3 @@ let welcomer = member.guild.channels.find("name","welcome");
  
       }
       });
-
-	
-// THIS  MUST  BE  THIS  WAY
