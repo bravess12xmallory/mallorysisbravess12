@@ -374,7 +374,7 @@ client.on("message", message => {
   if (!muteRole) return message.reply("**يجب انشاء رتبة `Muted!`**").catch(console.error);
   if (message.mentions.users.size < 1) return message.reply('**يرجى منشن العضو**').catch(console.error);
   const embed = new Discord.RichEmbed()
-    .setColor(#000000)
+    .setColor('#000000')
     .setTimestamp()
     .addField('تم فك الميوت عن:', `${user.username}#${user.discriminator} (${user.id})`)
     .addField('بواسطة:', `${message.author.username}#${message.author.discriminator}`)
