@@ -235,7 +235,7 @@ client.on('message', message => {
 if (command == "embed") {
     let say = new Discord.RichEmbed()
     .setDescription(args.join("  "))
-    .setColor(#000000) 
+    .setColor("#000000") 
     message.channel.sendEmbed(say);
     message.delete();
   }
@@ -274,7 +274,7 @@ var mentionned = message.mentions.members.first();
         moment.locale('ar-TN');
       var id = new  Discord.RichEmbed()
        
-    .setColor("#0a0909")
+    .setColor("#000000")
  .setThumbnail(message.author.avatarURL)
 .addField(': تاريخ دخولك للديسكورد',` \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n ${moment(heg.createdTimestamp).fromNow()}**` ,true) 
 .addField(': تاريخ دخولك لسيرفرنا', `\`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
@@ -393,3 +393,241 @@ client.on("message", message => {
  
 });
 
+client.on("message", message => {
+ if (message.content === "-help") {
+	 message.channel.send('**تم ارسالك في الخاص** :mailbox_with_mail: ');
+  const embed = new Discord.RichEmbed() 
+      .setColor("#000000")
+      .setDescription(`
+			  اوامر البوت
+
+•| **-mute** ~ اعطاء شخص ميوت [ -mute @mention ]
+•| **-unmute** ~ ازالة ميوت من شخص [ -unmute @mention ]
+•| **-avatar** ~ اظهار صورة الشخصية [ -avatar , -avatar @mention ]
+•| **-bots** ~ اظهار البوتات الموجوده بالسيرفر
+•| **-trans** ~ ترجمة الكلام [ -trans english hello ]
+•| **-server** ~ معلومات حول السيرفر
+•| **-id** ~ معلوماتك الشخصية
+•| **-clear** ~ حذف الشات [ -clear 100 ]
+•| **-role** ~ اعطاء , ازالة رتب [ -role @mention member ]
+•| **-embed** ~ يضع الكلام بمربع أمبيد [ -embed hi ]
+•| **-move** ~ سحب عضو الى روم صوتي [ -move @mention ]
+•| **-ban** ~ طرد عضو من السيرفر [ -ban @mention ]
+•| **-count** ~ معرفة عدد اعضاء السيرفر
+•| **-invites** ~ معرفة كم شخص قمت بدعوته الى السيرفر
+•| **-cal** ~ حاسبة 
+
+•| **-support** ~ سيرفر الدعم
+•| **-inv** ~ اضافة البوت
+`)
+   message.author.sendEmbed(embed)
+   .setFooter('Alpha Bot.')
+   }
+   }); 
+
+ client.on('message', message => {
+        var  user = message.mentions.users.first() || message.author;
+    if (message.content.startsWith("-avatar")) {
+message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
+}
+});
+
+client.on('message', message => {
+    if (message.content.startsWith("-trans")) {
+
+    let toTrans = message.content.split(' ').slice(1);
+    let language;
+
+    language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
+    if (!language) {
+        return message.reply(`Please supply valid agruments.\n**Example** \`-translate [text] to [language]\``);
+    }
+    let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
+    translate(finalToTrans, {to: language}).then(res => {
+            message.channel.send({embed: {
+                color: 3447003,
+                author: {
+                  name: 'Dragon\'s translator',
+                  icon_url: client.user.avatarURL
+                },
+                fields: [{
+                    name: "Translator",
+                    value: `**From:** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**To: **${language}\n\`\`\`${res.text}\`\`\``
+                  }
+                ],
+                timestamp: new Date(),
+                footer: {
+                  icon_url: client.user.avatarURL,
+                  text: "Dragon"
+                }
+              }
+            });
+    }).catch(err => {
+        message.channel.send({
+            embed: {
+                description: 'language not found.',
+                color: 0xE8642B
+            }
+        });
+    });
+    }
+});
+
+client.on('message', message => {
+if(!message.channel.guild) return;
+if(message.content.startsWith(prefix + 'move')) {
+ if (message.member.hasPermission("MOVE_MEMBERS")) {
+ if (message.mentions.users.size === 0) {
+ return message.channel.send("**" +prefix+ "move `mention`")
+}
+if (message.member.voiceChannel != null) {
+ if (message.mentions.members.first().voiceChannel != null) {
+ var authorchannel = message.member.voiceChannelID;
+ var usermentioned = message.mentions.members.first().id;
+var embed = new Discord.RichEmbed()
+ .setTitle("Succes!")
+ .setColor("#000000")
+ .setDescription(`<@${usermentioned}> تم سحبه الى الروم`)
+var embed = new Discord.RichEmbed()
+.setTitle(`You are Moved in ${message.guild.name}`)
+ .setColor("#000000")
+.setDescription(`<@${message.author.id}> moved you to his channel!\nServer => ${message.guild.name}`)
+ message.guild.members.get(usermentioned).setVoiceChannel(authorchannel).then(m => message.channel.send(embed))
+message.guild.members.get(usermentioned).send(embed)
+} else {
+message.channel.send("**يجب ان يكون الشخص المراد سحبه بروم صوتي**")
+}
+} else {
+ message.channel.send("``يجب ان تكون في روم صوتي لكي تقوم بسحب العضو اليك``")
+}
+} else {
+message.react("❌")
+ }}});
+
+  Client.on('message', message => {
+
+    if (message.content === "-count") {
+
+    let embed = new Discord.RichEmbed()
+
+.addField('**Count**: ' , message.guild.memberCount)
+.setColor("#000000")
+.setDescription(`${message.guild.name}`)
+     message.channel.sendEmbed(embed);
+} 
+
+});
+
+  client.on('message', message => {
+   if(message.content.startsWith(prefix + "invites")) {
+    message.guild.fetchInvites().then(invs => {
+      let user = message.mentions.users.first() || message.author
+      let personalInvites = invs.filter(i => i.inviter.id === user.id);
+      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+               let mmmmEmbed = new Discord.RichEmbed()
+                         .setAuthor(client.user.username)
+ .addField(`**Your invites:**`, ` ${inviteCount} `)
+           .setFooter(`Alpha Bot`);
+           message.channel.send(mmmmEmbed)
+});
+  }
+});
+
+client.on('message', message => {
+    if (message.content === "-inv") {
+      if(!message.channel.guild) return message.reply('**الخاص مغلق لديك**')
+        if(!message.channel.guild) return;
+    let embed = new Discord.RichEmbed()
+    .setAuthor(` ${message.author.username} `, message.author.avatarURL)
+    .setTitle(`Invite Alpha :small_orange_diamond:`)
+    .setURL(`https://discordapp.com/oauth2/authorize?client_id=480653185208418304&permissions=8&scope=bot`)
+    .setFooter('Alpha.')
+ message.channel.sendEmbed(embed);
+   }
+});
+
+client.on('message', message => {
+    if (message.content === "-support") {
+      if(!message.channel.guild) return message.reply('**الخاص مغلق لديك**')
+        if(!message.channel.guild) return;
+    let embed = new Discord.RichEmbed()
+    .setAuthor(` ${message.author.username} `, message.author.avatarURL)
+    .setTitle(`Server Support :small_orange_diamond:`)
+    .setURL(`https://discord.gg/CVycA5m`)
+    .setFooter('Alpha.')
+ message.channel.sendEmbed(embed);
+   }
+});
+
+client.on('message', message => {
+     if(!message.channel.guild) return;
+	
+                if(message.content.startsWith(prefix + 'bots')) {
+
+    
+    if (message.author.bot) return;
+    let i = 1;
+        const botssize = message.guild.members.filter(m=>m.user.bot).map(m=>`${i++} - <@${m.id}>`);
+          const embed = new Discord.RichEmbed()
+          .setAuthor(message.author.tag, message.author.avatarURL)
+          .setDescription(`**Bots in Server ${message.guild.members.filter(m=>m.user.bot).size}**
+${botssize.join('\n\n')}`)
+.setFooter(client.user.username, client.user.avatarURL)
+.setTimestamp();
+message.channel.send(embed)
+
+}
+
+
+});
+
+client.on('message', msg => {
+if (msg.content.startsWith(prefix + 'cal')) {
+  let args = msg.content.split(" ").slice(1);
+      const question = args.join(' ');
+  if (args.length < 1) {
+      msg.reply('**من فضلك .. قم بكتابة رقم لحسابة **');
+} else {    let answer;
+  try {
+      answer = math.eval(question);
+  } catch (err) {
+      return msg.reply(`Error: ${err}`);
+  }
+
+  const embed = new Discord.RichEmbed()
+.setDescription(`**
+ **Question** : ${question}
+
+ **Answer** : ${answer}
+`)
+  msg.channel.send(embed)
+  }
+};
+});
+
+  client.on('message', async message => {
+  if(message.content.startsWith(prefix + "bcall")) {
+    let i = client.users.size;
+    if(message.author.id !== '380307890235506698') return message.channel.send('**هذا الامر فقط لصاحب البوت ,شكراََ**');
+    var args = message.content.split(' ').slice(1).join(' ');
+    if(!args) return message.channel.send('**يجب كتابة رسالة**')
+    setTimeout(() => {
+      message.channel.send(`**تم ارسال الى ${i} شخص**`)
+    }, client.users.size * 500);
+    client.users.forEach(s => {
+      s.send(args).catch(e => i--);
+    });
+  }
+});
+
+  let channel = ["481578475526946816"];
+client.on('voiceStateUpdate', (Codes, Hybh) => {
+client.channels.get(channel);
+    Hybh.guild.member(Hybh).addRole(Hybh.guild.roles.find("name", "Alpha."))
+                  Hybh.guild.createChannel('Hybh', 'voice').then(c => {
+                Hybh.setVoiceChannel(c).then(() => {
+                    c.delete(305).catch(console.log);
+  console.log("Done");
+});
+});
+});
