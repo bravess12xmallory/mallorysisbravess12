@@ -188,7 +188,7 @@ client.on('message', async message => {
   client.on('message', message => {
     if (message.content.startsWith("-bans")) {
         message.guild.fetchBans()
-        .then(bans => message.channel.send(**The Number of People Bans : ${bans.size}))
+        .then(bans => message.channel.send("**Bans : ${bans.size} **"))
   .catch(console.error);
 }
 });
@@ -395,7 +395,7 @@ client.on("message", message => {
 
 client.on("message", message => {
  if (message.content === "-help") {
-	 message.channel.send('**تم ارسالك في الخاص** :mailbox_with_mail: ');
+	 message.channel.send('**تم ارسال الاوامر بالخاص** :mailbox_with_mail: ');
   const embed = new Discord.RichEmbed() 
       .setColor("#000000")
       .setDescription(`
@@ -419,6 +419,7 @@ client.on("message", message => {
 •| **-invite-link** ~ ارسال جميع روابط الانفايت التي انشأتها بالخاص
 •| **-short** ~ اختصار روابط طويله
 •| **-tag** ~ كتابة اسمك بالرسم [ -tag Hybh ]
+•| **-bans** ~ معرفة عدد المحظورين
 
 •| **-support** ~ سيرفر الدعم
 •| **-inv** ~ اضافة البوت
