@@ -139,7 +139,7 @@ client.on('message', msg => {
     msg.delete().then
     msg.delete().then
     msg.channel.bulkDelete(textxt);
-        msg.channel.send("```Cleard: " + textxt + "\n Messages```").then(m => m.delete(3000));
+        msg.channel.send("***```عدد الرسائل التي تم مسحها : " + textxt + " ```***").then(m => m.delete(3000));
         }    
     }
 }
@@ -179,6 +179,7 @@ client.on("message", message => {
       .setColor("#000000")
       .setDescription(`
 			  اوامر عامة
+
 ❖-allbots ~ لعرض جميع البوتات الي بالسيرفر
 ❖-server ~يعرض لك معلومات عن السيرفر
 ❖-bot ~ يعرض لك كل معلومات البوت
@@ -221,6 +222,7 @@ client.on("message", message => {
       .setColor("#000000")
       .setDescription(`
 	      اوامر ادارة السيرفر
+
 ❖-move @user ~  لسحب الشخص الى روومك
 ❖-bc ~ رسالة جماعية الى كل اعضاء السيرفر
 ❖-role @user <rank> ~ لأعطاء رتبة لعضو معين
@@ -258,6 +260,7 @@ client.on("message", message => {
       .setColor("#000000")
       .setDescription(`
           اوامر الالعاب
+
 ❖-rps ~ حجر ورقة مقص
 ❖-speed ~ اسرع كتابة
 ❖-quas ~ اسئلة عامة
@@ -282,6 +285,7 @@ client.on("message", message => {
       .setColor("#000000")
       .setDescription(`
 	        اوامر الموسيقى 
+
 ❖${prefix}play ~ لتشغيل أغنية برآبط أو بأسم
 ❖${prefix}skip ~ لتجآوز الأغنية الحآلية
 ❖${prefix}pause ~ إيقآف الأغنية مؤقتا
