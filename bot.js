@@ -562,7 +562,7 @@ if (message.content.startsWith(prefix + 'trans')) {
     
         const embed = new Discord.RichEmbed()
             .setColor("FFFFFF")
-            .setDescription("**ترجمة الكتابة.**\استعمل: `-translate <الكلمة لتبي> <االغة>`");
+            .setDescription("`-translate <الكلمة لتبي> <االغة>`");
 
         return message.channel.send(embed);
 
@@ -1293,7 +1293,7 @@ msg.channel.send(embed).then(() => {
         .then((collected) => {
                   const sh = new Discord.RichEmbed()
   .setColor("04791c")
-  .setDescription('**✅ |Good Job +1P**')
+  .setDescription('**Good! +1P**')
    .setFooter(`${collected.first().author}`)
   message.channel.sendEmbed(sh);
             let won = collected.first().author; // في هذا السطر يقوم الكود بسحب الأي دي الذي قام بالأجابة اولاً
@@ -1509,7 +1509,7 @@ let prefix = '-'
         const List = message.guild.emojis.map(e => e.toString()).join(" ");
 
         const EmojiList = new Discord.RichEmbed()
-            .setTitle('➠ Emojis') 
+            .setTitle('Emojis | Alpha Bot.') 
             .setAuthor(message.guild.name, message.guild.iconURL) 
             .setColor('RANDOM') 
             .setDescription(List) 
@@ -1564,7 +1564,7 @@ ${message.author.tag} تمت معاقبتك بواسطة
 [ ${reason} ] : السبب
 اذا كانت العقوبة عن طريق الخطأ تكلم مع المسؤلين
 `)
-		.setFooter(`في سيرفر : ${message.guild.name}`)
+		.setFooter(`Server : ${message.guild.name}`)
 		.setColor("RANDOM")
 	user.send( muteembeddm);
   }
@@ -1593,7 +1593,7 @@ if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return m
 client.on('guildCreate', guild => {
   var embed = new Discord.RichEmbed()
   .setColor(0x5500ff)
-  .setDescription(`**شكراً لك لإضافه البوت الى سيرفرك**`)
+  .setDescription(`**Special Thank You For Added Bot in Your Server.`)
       guild.owner.send(embed)
 });
 
@@ -1817,7 +1817,7 @@ const cuttweet = [     'كت تويت ‏| تخيّل لو أنك سترسم ش�
   var embed = new Discord.RichEmbed()
   .setColor('RANDOM')
    .setThumbnail(message.author.avatarURL) 
- .addField('Speed bot' ,
+ .addField('Alpha Bot.' ,
   `${cuttweet[Math.floor(Math.random() * cuttweet.length)]}`)
   message.channel.sendEmbed(embed);
   console.log('[id] Send By: ' + message.author.username)
