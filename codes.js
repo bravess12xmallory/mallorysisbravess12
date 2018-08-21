@@ -773,3 +773,23 @@ let welcomer = member.guild.channels.find("name","welcome");
  
       }
       });
+
+client.on('message', message => {
+    if(message.content.includes('discord.gg')){
+                                            if(!message.channel.guild) return message.reply('**يمنع نشر روابط الانفايت بهذا السيرفر**');
+        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+        message.delete()
+    return message.reply(`**يمنع نشر روابط الانفايت بهذا السيرفر**`)
+    }
+}
+});
+
+client.on('message', message => {
+    if(message.content.includes('youtube')){
+                                            if(!message.channel.guild) return message.reply('**يمنع نشر روابط الانفايت بهذا السيرفر**');
+        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+        message.delete()
+    return message.reply(`**يمنع نشر روابط الانفايت بهذا السيرفر**`)
+    }
+}
+});
