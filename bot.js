@@ -783,15 +783,6 @@ client.on('message', message => {
     }
 }
 });
-
-client.on('message', message => {
-    if(message.content.includes('youtube')){
-                                            if(!message.channel.guild) return message.reply('**يمنع نشر روابط الانفايت بهذا السيرفر**');
-        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
-        message.delete()
-    return message.reply(`**يمنع نشر روابط الانفايت بهذا السيرفر**`)
-    }
-}
-});
+////
 
 client.login(process.env.BOT_TOKEN);
