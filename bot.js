@@ -33,6 +33,19 @@ client.on('ready', () => {
 	console.log('I am ready!'); 
   });
 
+
+  let channel = ["481578475526946816"];
+client.on('voiceStateUpdate', (Codes, Hybh) => {
+client.channels.get(channel);
+    Hybh.guild.member(Hybh).addRole(Hybh.guild.roles.find("name", "Alpha."))
+                  Hybh.guild.createChannel('Hybh', 'voice').then(c => {
+                Hybh.setVoiceChannel(c).then(() => {
+                    c.delete(305).catch(console.log);
+  console.log("Done");
+});
+});
+});
+
 var guilds = {};
 client.on('guildBanAdd', function(guild) {
             const rebellog = client.channels.find("name", "log"),
