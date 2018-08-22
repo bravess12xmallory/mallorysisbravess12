@@ -129,7 +129,7 @@ channel.guild.owner.send(`<@!${channelremover.id}>
 
 client.on('guildCreate', guild => {
          const embed = new Discord.RichEmbed()
-     .setColor("BLACK")
+     .setColor("#565656")
      .setTitle('Alpha.')
      .setURL('https://discordapp.com/oauth2/authorize?client_id=480653185208418304&permissions=8&scope=bot')
   .setDescription(`**
@@ -141,7 +141,7 @@ client.channels.get("481026303412142083").sendEmbed(embed)
 
 client.on('guildDelete', guild => {
          const embed = new Discord.RichEmbed()
-     .setColor("BLACK")
+     .setColor("#565656")
      .setTitle('Alpha.')
      .setURL('https://discordapp.com/oauth2/authorize?client_id=480653185208418304&permissions=8&scope=bot')
   .setDescription(`**
@@ -293,8 +293,7 @@ client.on('message', message => {
         const List = message.guild.emojis.map(e => e.toString()).join(" ");
 
         const EmojiList = new Discord.RichEmbed()
-            .setTitle('Emojis') 
-            .setAuthor(message.guild.name, message.guild.iconURL) 
+            .setTitle('Emojis')  
             .setColor("#565656") 
             .setDescription(List) 
             .setFooter(message.guild.name) 
