@@ -152,14 +152,14 @@ client.channels.get("481026303412142083").sendEmbed(embed)
 });
 
 client.on('message', msg => {
-	var prefix = "-";
+	
   if (msg.author.bot) return;
   if (!msg.content.startsWith(prefix)) return;
   let command = msg.content.split(" ")[0];
   command = command.slice(prefix.length);
   let args = msg.content.split(" ").slice(1);
 
-    if(command === "clr") {
+    if(command === "clear") {
         const emoji = client.emojis.find("name", "wastebasket")
     let textxt = args.slice(0).join("");
     if(msg.member.hasPermission("MANAGE_MESSAGES")) {
@@ -288,7 +288,7 @@ if (command == "embed") {
 
 client.on('message', message => { 
 	
-    if (message.content.startsWith(PREFIX + 'emojis')) {
+    if (message.content.startsWith(prefix + 'emojis')) {
 
         const List = message.guild.emojis.map(e => e.toString()).join(" ");
 
