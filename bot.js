@@ -29,6 +29,7 @@ const sql = require("sqlite");
 
 client.on('ready', () => { 
     client.user.setStatus("dnd");
+     client.user.setActivity("!!help",{type: 'PLAYING'});
 	console.log('I am ready!'); 
   });
 
@@ -260,7 +261,6 @@ client.on("message", message => {
 •) **!!support** - سيرفر الدعم الفني
 `)
    message.author.sendEmbed(embed)
-   .setFooter('Alpha Bot')
    }
    }); 
 
