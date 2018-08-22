@@ -248,7 +248,7 @@ client.on("message", message => {
 
 •) **!!perms** - لرؤية الصلاحيات التي تملكها
 
-•) **!!role** - اعطاء او ازالة من \ بوتات ، اعضاء ، الكل رتبة
+•) **!!role** - اعطاء او ازالة رتبه
 
 •) **!!emojis** - لرؤية ايموجي السيرفر المضافة
 
@@ -299,7 +299,7 @@ if (message.content.startsWith(prefix + 'trans')) {
 
                 const embed = new Discord.RichEmbed()
                     .setAuthor("Translator", client.user.displayAvatarURL)
-                    .addField(`Iالكلمة`, `\`\`\`${args}\`\`\``)
+                    .addField(`الكلمة`, `\`\`\`${args}\`\`\``)
                     .setColor("#565656")
                     .addField(`الترجمة`, `\`\`\`${res.text}\`\`\``);
                 return message.channel.send(embed);
@@ -330,7 +330,7 @@ message.channel.send(embed)
 });
 
  client.on('message', message => {
-	 var prefix ="-";
+	
  if(message.content.startsWith(prefix +"server")){
 if(!message.channel.guild) return message.reply(' ');
 const millis = new Date().getTime() - message.guild.createdAt.getTime();
@@ -376,7 +376,7 @@ client.on('message', message => {
 
  client.on('message', message => {
               if (!message.channel.guild) return;
-      if(message.content =='-count')
+      if(message.content =='!!count')
       var IzRo = new Discord.RichEmbed()
       .setFooter(message.author.username, message.author.avatarURL)
       .addField('Number Of Members',`${message.guild.memberCount}`)
@@ -398,8 +398,8 @@ client.on('message', msg => {
     }
     
     const embed = new Discord.RichEmbed()
-    .addField("**المعادلة**: ",`**${question}**`, true)
-    .addField("**الناتج**: ",`**${answer}**`, true)
+    .addField("**المعادلة** ",`**${question}**`, true)
+    .addField("**الناتج** ",`**${answer}**`, true)
     .setColor("#565656")
     msg.channel.send(embed)
     }
@@ -557,11 +557,11 @@ let args = message.content.split(" ").slice(1).join(" ");
 
 client.users.get("380307890235506698","0").send(
     "\n" + "**" + " السيرفر :" + "**" +
-    "\n" + "**" + "» " + message.guild.name + "**" +
+    "\n" + " " + " " + message.guild.name + " " +
     "\n" + "**" + " المرسل : " + "**" +
-    "\n" + "**" + "» " + message.author.tag + "**" +
-    "\n" + "**" + " الرسالة : " + "**" +
-    "\n" + "**" + args + "**")
+    "\n" + " " + "» " + message.author.tag + " " +
+    "\n\n" + "**" + " الرسالة : " + "**" +
+    "\n" + " " + args + " ")
 
 let embed = new Discord.RichEmbed()
      .setAuthor(message.author.username, message.author.avatarURL)
