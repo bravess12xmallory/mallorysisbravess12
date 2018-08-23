@@ -769,7 +769,6 @@ bb.on("collect", r => {
 	msg.delete();
 })
 	 })
-	 }
 	 });
 
 
