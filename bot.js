@@ -738,31 +738,5 @@ client.on('message', message => {
        }
    });
 
-//////////////////////////////////////
-
-	client.on('message', async msg => {
-		
-	var user = msg.author;
-			var a = msg.guild.roles.find("name", 'Alpha.');
-		if(!a){
-        a = await msg.guild.createRole({
-		  name: "Agar",
-          color: "#ffffff",
-          permissions:[]
-		})
-		
-        }
-
-		if (msg.content.startsWith(prefix +'Active')) {
-
-		if(!msg.channel.guild) return msg.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-msg.channel.send(`للتفعيل يرجى الضغظ على الريأكشن`).then(res => {     
-     res.react('👌').then(r=>{
-
-    let bbb = (reaction, user) => reaction.emoji.name === '👌' && user.id === msg.author.id;
-
-});
-
-//////////////////////////////////////
 
 client.login(process.env.BOT_TOKEN);
