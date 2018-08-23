@@ -761,13 +761,7 @@ msg.channel.send(`للتفعيل يرجى الضغظ على الريأكشن`).t
 
     let bbb = (reaction, user) => reaction.emoji.name === '👌' && user.id === msg.author.id;
 
-    let bb = res.createReactionCollector(bbb, { maxMatches:1 , time: 80000 , });
-
-bb.on("collect", r => {
-    msg.guild.member(user.id).addRole(b);
-	msg.channel.send('`تم تفعيلك بنجاح`');
-	msg.delete();
-})
+});
 
 //////////////////////////////////////
 
