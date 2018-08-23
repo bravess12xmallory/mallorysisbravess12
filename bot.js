@@ -767,7 +767,7 @@ bb.on("collect", r => {
     msg.guild.member(user.id).addRole(b);
 	msg.channel.send('`تم تفعيلك بنجاح`');
 	msg.delete();
-});
+})
 
 //////////////////////////////////////
 
