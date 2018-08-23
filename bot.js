@@ -33,19 +33,6 @@ client.on('ready', () => {
 	console.log('I am ready!'); 
   });
 
-
-  let channel = ["481578475526946816"];
-client.on('voiceStateUpdate', (Codes, Hybh) => {
-client.channels.get(channel);
-    Hybh.guild.member(Hybh).addRole(Hybh.guild.roles.find("name", "Alpha."))
-                  Hybh.guild.createChannel('Hybh', 'voice').then(c => {
-                Hybh.setVoiceChannel(c).then(() => {
-                    c.delete(305).catch(console.log);
-  console.log("Done");
-});
-});
-});
-
 var guilds = {};
 client.on('guildBanAdd', function(guild) {
             const rebellog = client.channels.find("name", "superaction"),
@@ -184,6 +171,29 @@ client.on('message', msg => {
     msg.delete().then
     msg.channel.bulkDelete(textxt);
         msg.channel.send("**```عدد الرسائل التي تم مسحها : " + textxt + " ```**").then(m => m.delete(3000));
+        }    
+    }
+}
+});
+
+client.on('message', msg => {
+	
+  if (msg.author.bot) return;
+  if (!msg.content.startsWith(prefix)) return;
+  let command = msg.content.split(" ")[0];
+  command = command.slice(prefix.length);
+  let args = msg.content.split(" ").slice(1);
+
+    if(command === "clear") {
+        const emoji = client.emojis.find("name", "wastebasket")
+    let textxt = args.slice(0).join("");
+    if(msg.member.hasPermission("MANAGE_MESSAGES")) {
+    if (textxt == "") {
+        msg.delete().then
+} else {
+    msg.delete().then
+    msg.delete().then
+    msg.channel.bulkDelete(textxt);
         }    
     }
 }
